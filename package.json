@@ -4,7 +4,7 @@
   "description": "NU Coding Bootcamp Final Project",
   "main": "server.js",
   "scripts": {
-    "test": "jasmine",
+    "test": "node_modules/.bin/jasmine",
     "dev": "webpack & node server",
     "start": "node server",
     "build": "webpack"
