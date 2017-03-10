@@ -1,7 +1,7 @@
 import {Authenticated, LoginLink, LogoutLink, NotAuthenticated}
   from 'react-stormpath';
 import {Link} from 'react-router';
-import {React} from 'react';
+import React from 'react';
 
 const Header = () =>
     <nav className="navbar navbar-default navbar-static-top">

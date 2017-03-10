@@ -1,6 +1,6 @@
 import {Link} from 'react-router';
 import {LoginLink} from 'react-stormpath';
-import {React} from 'react';
+import React from 'react';
 
 const IndexPage = () =>
     <div className="container">

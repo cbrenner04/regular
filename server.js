@@ -17,14 +17,13 @@ app.use(bodyParser.json());
 // Parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.use(stormpath.init(app, {web: {produces: ['application/json']}}));
+app.use(stormpath.init(app, {website: true}));
 
 app.on('stormpath.ready', function () {
     app.listen(port, 'localhost', function (err) {
         if (err) {
             return console.error(err);
         }
-
         /* eslint no-console: "off", prefer-template: "off" */
         return console.log('listening on port ' + port);
     });
