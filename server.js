@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(stormpath.init(app, {website: true}));
 
 app.on('stormpath.ready', function () {
-    app.listen(port, 'localhost', function (err) {
+    app.listen(port, function (err) {
         if (err) {
             return console.error(err);
         }
