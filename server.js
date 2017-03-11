@@ -24,6 +24,7 @@ app.on('stormpath.ready', function () {
         if (err) {
             return console.error(err);
         }
+
         /* eslint no-console: "off", prefer-template: "off" */
         return console.log('listening on port ' + port);
     });

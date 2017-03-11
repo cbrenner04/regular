@@ -8,6 +8,8 @@ module.exports = function(app) {
         response.send('index.html');
     });
 
+    /* This is specific to StormPath and should not be touched unless you have
+       a very good reason */
     app.post('/me',
       bodyParser.json(),
       stormpath.loginRequired,

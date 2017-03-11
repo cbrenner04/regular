@@ -7,9 +7,7 @@ const IndexPage = () =>
         <h2 className="text-center">Welcome!</h2>
         <hr />
         <div className="jumbotron">
-            <p>
-                <strong>To my React application!</strong>
-            </p>
+            <p><strong>To my React application!</strong></p>
             <p>
                 Ready to begin? Try these Stormpath features that are included
                 in this example:
