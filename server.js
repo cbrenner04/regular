@@ -5,10 +5,10 @@ var path = require('path');
 // For Storm Path
 var stormpath = require('express-stormpath');
 
-var PORT = 3000;
+var LOCAL_PORT = 3000;
 
 var app = express();
-var port = process.env.PORT || PORT;
+var port = process.env.PORT || LOCAL_PORT;
 
 // Serve static content for the app from 'public' directory
 app.use(express.static(path.join(__dirname, '/public')));
