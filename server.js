@@ -10,6 +10,8 @@ var LOCAL_PORT = 3000;
 var app = express();
 var port = process.env.PORT || LOCAL_PORT;
 
+app.set('trust proxy');
+
 // Serve static content for the app from 'public' directory
 app.use(express.static(path.join(__dirname, '/public')));
 
