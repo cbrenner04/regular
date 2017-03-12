@@ -1,8 +1,9 @@
 import React from 'react';
+import RegularMap from './RegularMap';
 
 const AuthLanding = () =>
     <div className="container">
-        <p>AuthLanding</p>
+        <RegularMap />
     </div>
 
 export default AuthLanding;
