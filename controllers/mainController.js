@@ -1,11 +1,17 @@
 var bodyParser = require('body-parser');
 var stormpath = require('express-stormpath');
+var path = require('path');
 
 const BAD_REQUEST = 400;
 
 module.exports = function(app) {
     app.get('/', function(request, response) {
         response.send('index.html');
+    });
+
+    app.get('/css/bootstrap.min.css', function(request, response) {
+      console.log('GET IT')
+        response.sendFile(path.join(__dirname, '../public/css/bootstrap.min.css'));
     });
 
     /* This is specific to StormPath and should not be touched unless you have
