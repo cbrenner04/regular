@@ -1,6 +1,6 @@
 import DocumentTitle from 'react-document-title';
-import {ResetPasswordForm} from 'react-stormpath';
 import React from 'react';
+import {ResetPasswordForm} from 'react-stormpath';
 
 const ResetPasswordPage = () =>
     <DocumentTitle title={'ResetPassword'}>

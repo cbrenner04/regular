@@ -1,5 +1,3 @@
-import {Link} from 'react-router';
-import {LoginLink} from 'react-stormpath';
 import React from 'react';
 
 const AuthLanding = () =>
