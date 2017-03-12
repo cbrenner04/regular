@@ -8,12 +8,14 @@ import Main from '../components/main';
 import Profile from '../components/Profile';
 import React from 'react';
 import RegistrationPage from '../components/RegistrationPage';
+import ResetPasswordPage from '../components/ResetPasswordPage';
 
 const Routes = () =>
     <Router history={ browserHistory }>
         <HomeRoute path="/" component={ Main }>
             <IndexRoute component={ UnAuthLanding } />
             <LoginRoute path="/login" component={ LoginPage } />
+            <Route path="/forgot" component={ ResetPasswordPage } />
             <Route path="/register" component={ RegistrationPage } />
             <AuthenticatedRoute>
                 <HomeRoute path="/home" component={ AuthLanding } />
