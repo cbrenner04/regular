@@ -3,15 +3,17 @@ import {Authenticated, LoginLink, LogoutLink, NotAuthenticated}
 import {Link} from 'react-router';
 import React from 'react';
 
-const Header = () =>
+const Navigation = () =>
     <nav className="navbar navbar-default navbar-static-top">
         <div className="container">
             <div id="navbar-collapse"
                  className="collapse navbar-collapse">
                 <ul className="nav navbar-nav">
-                    <li><Link to="/">Home</Link></li>
+                    <NotAuthenticated>
+                        <li><Link to="/">Regular</Link></li>
+                    </NotAuthenticated>
                     <Authenticated>
-                        <li><Link to="/profile">Profile</Link></li>
+                        <li><Link to="/home">Regular</Link></li>
                     </Authenticated>
                 </ul>
                 <ul className="nav navbar-nav navbar-right">
@@ -22,6 +24,9 @@ const Header = () =>
                         <li><Link to="/register">Create Account</Link></li>
                     </NotAuthenticated>
                     <Authenticated>
+                        <li><Link to="/profile">Profile</Link></li>
+                    </Authenticated>
+                    <Authenticated>
                         <li><LogoutLink /></li>
                     </Authenticated>
                 </ul>
@@ -29,4 +34,4 @@ const Header = () =>
         </div>
     </nav>
 
-export default Header;
+export default Navigation;

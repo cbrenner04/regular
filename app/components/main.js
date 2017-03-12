@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import DocumentTitle from 'react-document-title';
-import Header from './Header';
+import Navigation from './Navigation';
 
 export default class Main extends Component {
     render() {
         return (
             <DocumentTitle title="My React App">
                 <div className="Main">
-                    <Header />
+                    <Navigation />
                     {this.props.children}
                 </div>
             </DocumentTitle>

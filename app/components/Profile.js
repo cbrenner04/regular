@@ -2,7 +2,7 @@ import DocumentTitle from 'react-document-title';
 import React from 'react';
 import {UserProfileForm} from 'react-stormpath';
 
-const ProfilePage = () =>
+const Profile = () =>
     <DocumentTitle title={'My Profile'}>
         <div className="container">
             <div className="row">
@@ -19,4 +19,4 @@ const ProfilePage = () =>
         </div>
     </DocumentTitle>
 
-export default ProfilePage;
+export default Profile;
