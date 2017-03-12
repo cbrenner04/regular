@@ -1,0 +1,14 @@
+#jumbo {
+    background-image: url('../img/city-scape3.jpg');
+    color: white;
+    margin: auto;
+}
+.main-text {
+    margin-top: 0px;
+}
+.main-wrapper {
+    opacity: 0.7;
+}
+#opacity-one {
+    opacity: 1;
+}
