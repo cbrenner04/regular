@@ -2,6 +2,9 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var express = require('express');
 var path = require('path');
+var request = require('request');
+var User = require("./models/User.js");
+var Establishment = require('./models/Establishment.js');
 
 // For Storm Path
 var stormpath = require('express-stormpath');
