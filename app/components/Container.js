@@ -1,5 +1,5 @@
 import React from 'react';
-import {GoogleApiWrapper, Map, Listing, Marker, InfoWindow} from 'google-maps-react'
+import {GoogleApiWrapper, Map, Listing, Marker, InfoWindow, google} from 'google-maps-react'
 import GoogleApiKey from '../../googleApiKey'
 
 export class Container extends React.Component {
@@ -10,6 +10,10 @@ export class Container extends React.Component {
                    visible={true}
                    zoom={14}
               >
+                <Marker
+                  name={'Your position'}
+                  position={{lat: 37.762391, lng: -122.439192}}
+                />
               </Map>
           </div>
         )
