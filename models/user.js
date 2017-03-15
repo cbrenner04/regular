@@ -5,7 +5,8 @@ mongoose.modelSchemas = {};
 var userSchema = new Schema({
     id: {
         type: Number,
-        required: true
+        required: true,
+        unique: true
     }
 });
 var User = mongoose.model('User', userSchema);
