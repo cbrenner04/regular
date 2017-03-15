@@ -37,5 +37,5 @@ var userEstablishmentSchema = new Schema({
         type: Date
     }
 });
-var userEstablishment = mongoose.model('userEstablishment', userEstablishmentSchema);
+var UserEstablishment = mongoose.model('UserEstablishment', userEstablishmentSchema);
 module.exports = UserEstablishment;

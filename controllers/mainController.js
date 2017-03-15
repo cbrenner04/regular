@@ -15,6 +15,14 @@ module.exports = function(app) {
         );
     });
 
+    app.get('/email', stormpath.getUser, function (req, res) {
+      if (req.user) {
+      console.log('User Email ' + req.user.email);
+      } else {
+      console.log('No such thing available');
+      }
+    });
+
     /* This is specific to StormPath and should not be touched unless you have
        a very good reason */
     app.post('/me',
