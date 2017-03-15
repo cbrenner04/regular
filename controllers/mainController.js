@@ -1,5 +1,6 @@
 var bodyParser = require('body-parser');
 var stormpath = require('express-stormpath');
+var UserEstablishment = require('../models/UserEstablishment.js')
 var path = require('path');
 
 const BAD_REQUEST = 400;
@@ -16,12 +17,15 @@ module.exports = function(app) {
     });
 
     app.get('/email', stormpath.getUser, function (req, res) {
-      if (req.user) {
-      console.log('User Email ' + req.user.email);
-      } else {
-      console.log('No such thing available');
-      }
-    });
+      var comment = req.user.email;
+      UserEstablishment.create(comment, function(err, rating) {
+            if (req.user) {
+              console.log('User Email ' + req.user.email);
+            } else {
+              console.log('No such thing available');
+          }
+        });
+      });
 
     /* This is specific to StormPath and should not be touched unless you have
        a very good reason */
