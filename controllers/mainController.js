@@ -17,15 +17,23 @@ module.exports = function(app) {
     });
 
     app.get('/email', stormpath.getUser, function (req, res) {
-      var comment = req.user.email;
-      UserEstablishment.create(comment, function(err, rating) {
-            if (req.user) {
-              console.log('User Email ' + req.user.email);
+        if (req.user) {
+          console.log('User Email ' + req.user.email);
+        } else {
+          console.log('No such thing available');
+        }
+    });
+
+    app.post('/email', function (req, res){
+    var comment = req.user.email;
+    UserEstablishment.create(comment, function(err, comment) {
+       if (err) {
+                res.send(err);
             } else {
-              console.log('No such thing available');
-          }
+                console.log(comment);
+            }
         });
-      });
+    });
 
     /* This is specific to StormPath and should not be touched unless you have
        a very good reason */
