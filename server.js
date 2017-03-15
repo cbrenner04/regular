@@ -5,6 +5,7 @@ var path = require('path');
 var request = require('request');
 var User = require("./models/user.js");
 var Establishment = require('./models/establishment.js');
+var UserEstablishment = require('./models/UserEstablishment.js');
 
 // For Storm Path
 var stormpath = require('express-stormpath');
@@ -16,8 +17,7 @@ var port = process.env.PORT || LOCAL_PORT;
 var db;
 
 
-mongoose.connect();
-
+mongoose.connect("mongodb://localhost:regular");
 db = mongoose.connection;
 
 mongoose.Promise = Promise;
