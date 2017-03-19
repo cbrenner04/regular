@@ -2,6 +2,7 @@ import {AuthenticatedRoute, HomeRoute, LoginRoute, Router}
   from 'react-stormpath';
 import {IndexRoute, Route, browserHistory} from 'react-router';
 import AuthLanding from '../components/AuthLanding';
+import Establishment from '../components/Establishment';
 import LoginPage from '../components/LoginPage';
 import Main from '../components/main';
 import Profile from '../components/Profile';
@@ -20,6 +21,7 @@ const Routes = () =>
             <AuthenticatedRoute>
                 <HomeRoute path="/home" component={ AuthLanding } />
                 <Route path="/profile" component={ Profile } />
+                <Route path="/establishments(/:eId)" component={ Establishment } />
             </AuthenticatedRoute>
           </HomeRoute>
     </Router>
