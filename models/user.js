@@ -1,10 +1,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-mongoose.models = {};
-mongoose.modelSchemas = {};
 var userSchema = new Schema({
-    id: {
-        type: Number,
+    email: {
+        type: String,
         required: true,
         unique: true
     }
