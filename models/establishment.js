@@ -1,7 +1,5 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-mongoose.models = {};
-mongoose.modelSchemas = {};
 var establishmentSchema = new Schema({
     id: {
         type: Number,
@@ -13,7 +11,7 @@ var establishmentSchema = new Schema({
         required: true
     },
     location: {
-        type: String,
+        type: [],
         required: true
     }
 });

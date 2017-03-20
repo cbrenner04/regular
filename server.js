@@ -3,9 +3,9 @@ var bodyParser = require('body-parser');
 var express = require('express');
 var path = require('path');
 var request = require('request');
-var User = require("./models/user.js");
-var Establishment = require('./models/establishment.js');
-var UserEstablishment = require('./models/UserEstablishment.js');
+// var User = require("./models/user.js");
+// var Establishment = require('./models/establishment.js');
+// var UserEstablishment = require('./models/UserEstablishment.js');
 
 // For Storm Path
 var stormpath = require('express-stormpath');

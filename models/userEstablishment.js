@@ -1,7 +1,5 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-mongoose.models = {};
-mongoose.modelSchemas = {};
 var userEstablishmentSchema = new Schema({
     id: {
         type: Number,
@@ -17,24 +15,17 @@ var userEstablishmentSchema = new Schema({
         ref: 'Establishment'
     }],
     bathroomGender: {
-        type: Number,
-        Default: 0,
-        min: 0,
-        max: 3,
+        type: String,
+        enum: ['gender neutral', 'female', 'family', 'male'],
         required: true
     },
     rating: {
-        type: Number,
-        Default: 1,
-        min: 0,
-        max: 3,
+        type: String,
+        enum: ['terrible', 'decent', 'splendid'],
         required: true
     },
     comment: {
         body: String
-    },
-    createdAt: {
-        type: Date
     }
 });
 var UserEstablishment = mongoose.model('UserEstablishment', userEstablishmentSchema);
