@@ -3,7 +3,9 @@ var stormpath = require('express-stormpath');
 // var UserEstablishment = require('../models/userEstablishment.js');
 var User = require('../models/user.js');
 var path = require('path');
+
 var BAD_REQUEST = 400;
+
 module.exports = function (app) {
     app.get('/', function (request, response) {
         response.send('index.html');
