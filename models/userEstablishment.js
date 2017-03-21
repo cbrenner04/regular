@@ -1,32 +1,31 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var {Schema} = mongoose;
 var userEstablishmentSchema = new Schema({
-    id: {
-        type: Number,
+    bathroomGender: {
+        enum: ['gender neutral', 'female', 'family', 'male'],
         required: true,
+        type: String
+    },
+    comment: {body: String},
+    establishmentId: [{
+        ref: 'Establishment',
+        type: Schema.Types.ObjectId
+    }],
+    id: {
+        required: true,
+        type: Number,
         unique: true
     },
-    userId: [{
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    }],
-    establishmentId: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Establishment'
-    }],
-    bathroomGender: {
-        type: String,
-        enum: ['gender neutral', 'female', 'family', 'male'],
-        required: true
-    },
     rating: {
-        type: String,
         enum: ['terrible', 'decent', 'splendid'],
-        required: true
+        required: true,
+        type: String
     },
-    comment: {
-        body: String
-    }
+    userId: [{
+        ref: 'User',
+        type: Schema.Types.ObjectId
+    }]
 });
-var UserEstablishment = mongoose.model('UserEstablishment', userEstablishmentSchema);
+var UserEstablishment =
+    mongoose.model('UserEstablishment', userEstablishmentSchema);
 module.exports = UserEstablishment;

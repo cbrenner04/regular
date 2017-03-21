@@ -1,19 +1,21 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var {Schema} = mongoose;
 var establishmentSchema = new Schema({
     id: {
-        type: Number,
         required: true,
+        type: Number,
         unique: true
     },
-    name: {
-        type: String,
-        required: true
-    },
     location: {
-        type: [],
-        required: true
+        required: true,
+        type: []
+    },
+    name: {
+        required: true,
+        type: String
     }
 });
+
 var Establishment = mongoose.model('Establishment', establishmentSchema);
+
 module.exports = Establishment;
