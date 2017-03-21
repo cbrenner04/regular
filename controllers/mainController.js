@@ -5,9 +5,9 @@ var path = require('path');
 
 var BAD_REQUEST = 400;
 
-module.exports = function (app) {
-    app.get('/', function (request, response) {
-        response.send('index.html');
+module.exports = function(app) {
+    app.get('/', function(request, response) {
+        response.sendFile(path.join(__dirname, '../public/'));
     });
     app.get('/css/bootstrap.min.css', function (request, response) {
         response.sendFile(
