@@ -23,7 +23,7 @@ const Navigation = () =>
                         <li><Link to="/">Regular</Link></li>
                     </NotAuthenticated>
                     <Authenticated>
-                        <li><Link to="/home">Regular</Link></li>
+                        <li><Link to="/map">Regular</Link></li>
                     </Authenticated>
                 </ul>
                 <ul className="nav navbar-nav navbar-right">
