@@ -1,6 +1,8 @@
+var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var express = require('express');
 var path = require('path');
+var {Promise} = require('es6-promise');
 
 // For Storm Path
 var stormpath = require('express-stormpath');
@@ -9,6 +11,17 @@ var LOCAL_PORT = 3000;
 
 var app = express();
 var port = process.env.PORT || LOCAL_PORT;
+var db = {};
+
+mongoose.connect('mongodb://localhost:regular');
+db = mongoose.connection;
+
+mongoose.Promise = Promise;
+
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+    console.log('MONGOOSE is working');
+});
 
 app.set('trust proxy');
 

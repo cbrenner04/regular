@@ -1,7 +1,5 @@
-import {Link} from 'react-router';
-import {LoginLink} from 'react-stormpath';
-import React from 'react';
 import Container from './Container';
+import React from 'react';
 
 const AuthLanding = () =>
     <div className="container">
