@@ -12,3 +12,11 @@
 #opacity-one {
     opacity: 1;
 }
+
+.btn-group-justified {
+    height: 50px;
+}
+
+.score {
+    font-size: 100px;
+}
