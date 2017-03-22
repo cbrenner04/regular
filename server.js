@@ -13,7 +13,8 @@ var app = express();
 var port = process.env.PORT || LOCAL_PORT;
 var db = {};
 
-mongoose.connect('mongodb://localhost:regular');
+mongoose.connect('mongodb://heroku_6mn2mnfd:uesubshit2csh14se097pikmq@' +
+                 'ds139480.mlab.com:39480/heroku_6mn2mnfd');
 db = mongoose.connection;
 
 mongoose.Promise = Promise;
