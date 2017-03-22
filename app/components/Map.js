@@ -24,7 +24,8 @@ const Map = ({center, markers}) =>
                             position: {
                                 lat: venue.location.lat,
                                 lng: venue.location.lng
-                            }
+                            },
+                            name: venue.name
                         }
 
                         return <Marker
@@ -32,7 +33,7 @@ const Map = ({center, markers}) =>
                                     {...marker}
                                 >
                                         <InfoWindow>
-                                            HELLO
+                                            {marker.name}
                                         </InfoWindow>
                                 </Marker>
                     })
