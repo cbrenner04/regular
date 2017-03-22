@@ -33,8 +33,8 @@ class Container extends Component {
             <div>
                 <div style={{
                     background: 'red',
-                    height: 600,
-                    width: 800
+                    height: '50vh',
+                    width: '100%'
                 }}>
                     <Map
                         center={location}
