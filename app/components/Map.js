@@ -1,4 +1,4 @@
-import {GoogleMap, GoogleMapLoader, Marker} from 'react-google-maps'
+import {GoogleMap, GoogleMapLoader, InfoWindow, Marker} from 'react-google-maps'
 import React from 'react'
 
 const Map = ({center, markers}) =>
@@ -27,7 +27,14 @@ const Map = ({center, markers}) =>
                             }
                         }
 
-                        return <Marker key={index} {...marker} />
+                        return <Marker
+                                    key={index}
+                                    {...marker}
+                                >
+                                        <InfoWindow>
+                                            HELLO
+                                        </InfoWindow>
+                                </Marker>
                     })
                 }
             </GoogleMap>

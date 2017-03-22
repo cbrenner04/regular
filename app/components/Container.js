@@ -36,7 +36,10 @@ class Container extends Component {
                     height: 600,
                     width: 800
                 }}>
-                    <Map center={location} markers={this.state.venues} />
+                    <Map
+                        center={location}
+                        markers={this.state.venues}
+                    />
                 </div>
                 <Places venues={this.state.venues} />
             </div>
