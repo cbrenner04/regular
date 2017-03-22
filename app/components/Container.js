@@ -38,7 +38,7 @@ class Container extends Component {
                 }}>
                     <Map
                         center={location}
-                        markers={this.state.venues} 
+                        markers={this.state.venues}
                     />
                 </div>
                 <Places venues={this.state.venues} />

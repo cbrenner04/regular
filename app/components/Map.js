@@ -31,7 +31,6 @@ const Map = ({center, markers}) =>
                                     key={index}
                                     {...marker}
                                 >
-                                    
                                         <InfoWindow>
                                             HELLO
                                         </InfoWindow>
