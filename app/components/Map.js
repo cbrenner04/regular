@@ -11,7 +11,7 @@ const Map = ({center, markers}) =>
         }
         googleMapElement = {
             <GoogleMap
-                defaultZoom={15}
+                defaultZoom={18}
                 defaultCenter={center}
                 options={{
                     mapTypeControl: false,
