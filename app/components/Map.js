@@ -28,13 +28,12 @@ const Map = ({center, markers}) =>
                             name: venue.name
                         }
 
-                        return <Marker
-                                    key={index}
-                                    {...marker}
+                        return <Marker key={index}
+                                       {...marker}
                                 >
-                                        <InfoWindow>
-                                            {marker.name}
-                                        </InfoWindow>
+                                    <InfoWindow>
+                                        {marker.name}
+                                    </InfoWindow>
                                 </Marker>
                     })
                 }

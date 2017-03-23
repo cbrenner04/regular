@@ -7,13 +7,43 @@ import superagent from 'superagent'
 class Container extends Component {
     constructor() {
         super()
-        this.state = {venues: []}
+        this.state = {
+            venues: [],
+            location: {
+                lat: 41.8818695,
+                lng: -87.629838
+            }
+        }
     }
 
     componentDidMount() {
+        navigator.geolocation.getCurrentPosition((position) => {
+            this.setState({
+                location: {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                }
+            })
+
+            this.doFourSquare();
+
+        }, () => {
+            this.setState({
+                location: {
+                    lat: 41.8818695,
+                    lng: -87.629838
+                }
+            })
+
+            this.doFourSquare();
+        });
+    }
+
+    doFourSquare() {
         const url = 'https://api.foursquare.com/v2/venues/search?v=20140806&l' +
-                    `l=41.896797,-87.619278&client_id=${Foursquare.id}&client` +
-                    `_secret=${Foursquare.secret}`
+                    `l=${this.state.location.lat},${this.state.location.lng}&` +
+                    `client_id=${Foursquare.id}&client_secret=` +
+                    `${Foursquare.secret}`
 
         superagent.get(url).query(null).
             set('Accept', 'text/json').
@@ -24,11 +54,6 @@ class Container extends Component {
     }
 
     render() {
-        const location = {
-            lat: 41.896797,
-            lng: -87.61927
-        }
-
         return (
             <div>
                 <div style={{
@@ -36,9 +61,8 @@ class Container extends Component {
                     height: '50vh',
                     width: '100%'
                 }}>
-                    <Map
-                        center={location}
-                        markers={this.state.venues}
+                    <Map center={this.state.location}
+                         markers={this.state.venues}
                     />
                 </div>
                 <Places venues={this.state.venues} />
