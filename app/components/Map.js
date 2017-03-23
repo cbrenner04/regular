@@ -28,11 +28,14 @@ const Map = ({center, markers}) =>
                             name: venue.name
                         }
 
-                        return <Marker key={index}
-                                       {...marker}
+                        return <Marker 
+                                    key={index}
+                                    {...marker}
                                 >
                                     <InfoWindow>
-                                        {marker.name}
+                                        <a href={`/#/establishments/${venue.id}`}>
+                                            {`${index + 1}. ${venue.name}`}
+                                        </a>
                                     </InfoWindow>
                                 </Marker>
                     })

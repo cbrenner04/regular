@@ -53,6 +53,10 @@ class Container extends Component {
             })
     }
 
+    onInfoWindowClick() {
+        
+    }
+
     render() {
         return (
             <div>
