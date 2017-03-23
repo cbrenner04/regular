@@ -8,11 +8,11 @@ class Container extends Component {
     constructor() {
         super()
         this.state = {
-            venues: [],
             location: {
                 lat: 41.8818695,
                 lng: -87.629838
-            }
+            },
+            venues: []
         }
     }
 
@@ -51,10 +51,6 @@ class Container extends Component {
                 const {venues} = response.body.response
                 this.setState({venues})
             })
-    }
-
-    onInfoWindowClick() {
-        
     }
 
     render() {
