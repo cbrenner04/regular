@@ -1,6 +1,7 @@
 var bodyParser = require('body-parser');
 var stormpath = require('express-stormpath');
 var User = require('../models/user.js');
+var Establishment = require('../models/establishment.js');
 var path = require('path');
 
 var BAD_REQUEST = 400;
@@ -34,6 +35,37 @@ module.exports = function(app) {
                     );
                 }
             });
+        }
+    });
+    app.get('/bathroom/:id/:name/:address/:cross_street', function(req, res) {
+        var requestedBathroom = req.params
+        console.log(requestedBathroom)
+        if (requestedBathroom.id) {
+            Establishment.findOne({id: requestedBathroom.id},
+                function (err, bathroom) {
+                    if (err) {
+                        res.send(err);
+                    }
+                    // Saved!
+                    if (bathroom) {
+                        res.json(bathroom);
+                    } else {
+                        Establishment.create({
+                            id: requestedBathroom.id,
+                            name: requestedBathroom.name,
+                            address: requestedBathroom.address,
+                            cross_street: requestedBathroom.cross_street
+                        },
+                            function(error, bathroom) {
+                                if (err) {
+                                    res.send(error);
+                                }
+                                res.json(bathroom);
+                            }
+                        );
+                    }
+                }
+            );
         }
     });
 

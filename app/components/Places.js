@@ -8,6 +8,7 @@ const Places = ({venues}) =>
                 <a
                     href={`/#/establishments/${venue.id}`}
                     className="btn btn-default btn-lg btn-block"
+                    key={venue.id}
                 >
                     {`${index + 1}. ${venue.name}`}
                 </a>

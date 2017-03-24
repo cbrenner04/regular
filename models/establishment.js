@@ -1,14 +1,18 @@
 var mongoose = require('mongoose');
 var {Schema} = mongoose;
 var establishmentSchema = new Schema({
-    id: {
+    four_square_id: {
         required: true,
-        type: Number,
+        type: String,
         unique: true
     },
-    location: {
+    address: {
         required: true,
-        type: []
+        type: String
+    },
+    cross_street: {
+        require: true,
+        type: String
     },
     name: {
         required: true,
