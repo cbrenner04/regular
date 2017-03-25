@@ -1,6 +1,8 @@
 import {GoogleMap, GoogleMapLoader, InfoWindow, Marker} from 'react-google-maps'
 import React from 'react'
 
+const OFFSET = 1;
+
 const Map = ({center, markers}) =>
     <GoogleMapLoader
         containerElement = {
@@ -10,13 +12,12 @@ const Map = ({center, markers}) =>
             }}></div>
         }
         googleMapElement = {
-            <GoogleMap
-                defaultZoom={18}
-                defaultCenter={center}
-                options={{
-                    mapTypeControl: false,
-                    streetViewControl: false
-                }}>
+            <GoogleMap defaultZoom={18}
+                       defaultCenter={center}
+                       options={{
+                           mapTypeControl: false,
+                           streetViewControl: false
+                       }}>
 
                 {
                     markers.map((venue, index) => {
@@ -28,20 +29,15 @@ const Map = ({center, markers}) =>
                             }
                         }
 
-                        return <Marker
-                                    key={index}
-                                    {...marker}
-                                >
-                                    <InfoWindow>
-                                        <a
-                                            href={
-                                                `/#/establishments/${venue.id}`
-                                            }
-                                        >
-                                            {`${index + 1}. ${venue.name}`}
-                                        </a>
-                                    </InfoWindow>
-                                </Marker>
+                        return (
+                            <Marker key={index} {...marker}>
+                                <InfoWindow>
+                                    <a href={`/#/establishments/${venue.id}`}>
+                                        {`${index + OFFSET}. ${venue.name}`}
+                                    </a>
+                                </InfoWindow>
+                            </Marker>
+                        )
                     })
                 }
             </GoogleMap>

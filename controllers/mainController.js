@@ -10,11 +10,13 @@ module.exports = function(app) {
     app.get('/', function(request, response) {
         response.sendFile(path.join(__dirname, '../public/'));
     });
+
     app.get('/css/bootstrap.min.css', function (request, response) {
         response.sendFile(
             path.join(__dirname, '../public/css/bootstrap.min.css')
         );
     });
+
     app.get('/email', stormpath.getUser, function (req, res) {
         if (req.user) {
             User.findOne({email: req.user.email}, function (err, email) {
@@ -37,27 +39,22 @@ module.exports = function(app) {
             });
         }
     });
-    app.get('/bathroom/:id/:name/:address/:cross_street', function(req, res) {
-        var requestedBathroom = req.params
-        console.log(requestedBathroom)
-        if (requestedBathroom.id) {
-            Establishment.findOne({id: requestedBathroom.id},
-                function (err, bathroom) {
+
+    app.get('/bathroom/:id', function(req, res) {
+        var requestedBathroom = req.params.id
+        if (requestedBathroom) {
+            Establishment.findOne({fourSquareId: requestedBathroom},
+                function (err, bRoom) {
                     if (err) {
                         res.send(err);
                     }
                     // Saved!
-                    if (bathroom) {
-                        res.json(bathroom);
+                    if (bRoom) {
+                        res.json(bRoom);
                     } else {
-                        Establishment.create({
-                            id: requestedBathroom.id,
-                            name: requestedBathroom.name,
-                            address: requestedBathroom.address,
-                            cross_street: requestedBathroom.cross_street
-                        },
+                        Establishment.create({fourSquareId: requestedBathroom},
                             function(error, bathroom) {
-                                if (err) {
+                                if (error) {
                                     res.send(error);
                                 }
                                 res.json(bathroom);

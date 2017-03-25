@@ -30,14 +30,7 @@ export default class Establishment extends Component {
                     venueName: venue.name
                 })
             }).
-            then(() =>
-                superagent.get(
-                    `/bathroom/${this.state.venueId}/` +
-                    `${this.state.venueName}/${this.state.venueAddress}/` +
-                    `${this.state.venueCrossStreet}`
-                )
-            ).
-            then((response) => { console.log(response)})
+            then(() => superagent.get(`/bathroom/${this.state.venueId}`))
     }
 
     render() {
