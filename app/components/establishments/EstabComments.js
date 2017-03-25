@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-export default class EstabComments extends Component  {
+export default class EstabComments extends Component {
     handleChange(event) {
         const comments = event.target.name;
         const obj = {};
@@ -22,9 +22,11 @@ export default class EstabComments extends Component  {
                           <input type="text"
                                  name="comments"
                                  value={ this.props.comments }
-                                 onChange={ (event) => this.handleChange(event) }
+                                 onChange={
+                                     (event) => this.handleChange(event)
+                                 }
                                  id={'hello'} />
-                          <button type='submit'
+                          <button type="submit"
                                   form={'hello'}
                                   className="btn btn-default">
                             Post Your Comments!

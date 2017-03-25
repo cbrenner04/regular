@@ -1,25 +1,25 @@
 import React, {Component} from 'react';
-import Foursquare from '../../foursquareApiKey';
-import superagent from 'superagent';
 import EstabCheckIn from './establishments/EstabCheckIn.js';
 import EstabComments from './establishments/EstabComments.js';
 import EstabGender from './establishments/EstabGender';
 import EstabInteractionType from './establishments/EstabInteractionType.js';
 import EstabRating from './establishments/EstabRating.js';
+import Foursquare from '../../foursquareApiKey';
+import superagent from 'superagent';
 
 export default class Establishment extends Component {
     constructor() {
         super();
         this.state = {
-            genderSet: false,
-            interactionType: '',
-            ratingSet: false,
+            checkIn: '',
             checkInSet: false,
             commentSet: false,
-            gender: '',
-            rating: '',
-            checkIn: '',
             comments: '',
+            gender: '',
+            genderSet: false,
+            interactionType: '',
+            rating: '',
+            ratingSet: false,
             venueAddress: '',
             venueCrossStreet: '',
             venueId: '',
@@ -70,7 +70,7 @@ export default class Establishment extends Component {
     onCommentsSubmit() {
         // const input = { comments: this.state.comments };
         // Post submitted form
-        this.setState({ comments: '' });
+        this.setState({comments: ''});
     }
     handleUserInput(obj) {
         this.setState(obj);
@@ -88,19 +88,29 @@ export default class Establishment extends Component {
               </div>
               <br />
 
-              <EstabGender onGenderResponse={ (gender) => { this.onGenderSubmit(gender) } }/>
+              <EstabGender onGenderResponse={
+                  (gender) => {
+                      this.onGenderSubmit(gender)
+                  }
+              }/>
               <p>{ this.state.gender }</p>
               <p>{ this.state.genderSet }</p>
               <EstabInteractionType onInteractionResponse={
-                        (interactionType) => { this.onInteractionSubmit(interactionType) }
-                    } />
+                  (interactionType) => {
+                      this.onInteractionSubmit(interactionType)
+                  }
+              } />
               <p>{ this.state.interactionType}</p>
               <EstabRating onRatingResponse={
-                        (rating) => { this.onRatingSubmit(rating) }
-                    }/>
+                  (rating) => {
+                      this.onRatingSubmit(rating)
+                  }
+              }/>
               <p>{ this.state.rating }</p>
               <EstabCheckIn onCheckInResponse={
-                  (checkIn) => { this.onCheckInSubmit(checkIn)}
+                  (checkIn) => {
+                      this.onCheckInSubmit(checkIn)
+                  }
               }/>
               <p>{ this.state.checkIn }</p>
               <p>{ this.state.checkInSet }</p>
@@ -109,7 +119,9 @@ export default class Establishment extends Component {
                                  (object) => this.handleUserInput(object)
                              }
                              onCommentsResponse={
-                                 () => { this.onCommentsSubmit() }
+                                 () => {
+                                     this.onCommentsSubmit()
+                                 }
                              }/>
               <p>{ this.state.comments}</p>
             </div>
