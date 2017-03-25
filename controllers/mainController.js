@@ -1,6 +1,7 @@
 var bodyParser = require('body-parser');
 var stormpath = require('express-stormpath');
 var User = require('../models/user.js');
+var Establishment = require('../models/establishment.js');
 var path = require('path');
 
 var BAD_REQUEST = 400;
@@ -9,11 +10,13 @@ module.exports = function(app) {
     app.get('/', function(request, response) {
         response.sendFile(path.join(__dirname, '../public/'));
     });
+
     app.get('/css/bootstrap.min.css', function (request, response) {
         response.sendFile(
             path.join(__dirname, '../public/css/bootstrap.min.css')
         );
     });
+
     app.get('/email', stormpath.getUser, function (req, res) {
         if (req.user) {
             User.findOne({email: req.user.email}, function (err, email) {
@@ -34,6 +37,32 @@ module.exports = function(app) {
                     );
                 }
             });
+        }
+    });
+
+    app.get('/bathroom/:id', function(req, res) {
+        var requestedBathroom = req.params.id
+        if (requestedBathroom) {
+            Establishment.findOne({fourSquareId: requestedBathroom},
+                function (err, bRoom) {
+                    if (err) {
+                        res.send(err);
+                    }
+                    // Saved!
+                    if (bRoom) {
+                        res.json(bRoom);
+                    } else {
+                        Establishment.create({fourSquareId: requestedBathroom},
+                            function(error, bathroom) {
+                                if (error) {
+                                    res.send(error);
+                                }
+                                res.json(bathroom);
+                            }
+                        );
+                    }
+                }
+            );
         }
     });
 
