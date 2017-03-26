@@ -26,7 +26,7 @@ export default class EstabForm extends Component {
             then((response) => {
                 this.setState({
                     establishmentId: venue,
-                    userId: response.body.id
+                    userId: response.body._id
                 })
             })
     }
