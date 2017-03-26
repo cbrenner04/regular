@@ -1,6 +1,8 @@
 import DocumentTitle from 'react-document-title';
 import React from 'react';
 import {UserProfileForm} from 'react-stormpath';
+import UserProfileCheckIn from './profiles/UserProfileCheckIn.js';
+import UserProfileRating from './profiles/UserProfileRating.js';
 
 const Profile = () =>
     <DocumentTitle title={'My Profile'}>
@@ -14,6 +16,8 @@ const Profile = () =>
             <div className="row">
                 <div className="col-xs-12">
                     <UserProfileForm />
+                    <UserProfileCheckIn />
+                    <UserProfileRating />
                 </div>
             </div>
         </div>
