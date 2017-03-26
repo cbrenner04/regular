@@ -67,6 +67,21 @@ module.exports = function(app) {
         }
     });
 
+    app.get('/user_establishments/:id', function(req, res) {
+        var requestedBathroom = req.params.id
+        if (requestedBathroom) {
+            UserEstablishment.find({establishmentId: requestedBathroom},
+                function (err, bRoom) {
+                    if (err) {
+                        res.send(err);
+                    }
+                    
+                    res.json(bRoom);
+                }
+            );
+        }
+    });
+
     app.post('/user_establishments', function(request, response) {
         var {body} = request;
         UserEstablishment.create({
