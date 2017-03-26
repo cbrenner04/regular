@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import EstabComments from './EstabComments.js';
 import EstabGender from './EstabGender';
 import EstabRating from './EstabRating.js';
+import superagent from 'superagent';
 
 export default class EstabForm extends Component {
     constructor() {
@@ -9,11 +10,25 @@ export default class EstabForm extends Component {
         this.state = {
             commentSet: false,
             comments: '',
+            establishmentId: '',
             gender: '',
             genderSet: false,
             rating: '',
-            ratingSet: false
+            ratingSet: false,
+            userId: ''
         }
+    }
+
+    componentDidMount() {
+        const venue = this.props.venueId;
+        superagent.get('/email').query(null).
+            set('Accept', 'text/json').
+            then((response) => {
+                this.setState({
+                    establishmentId: venue,
+                    userId: response.body.id
+                })
+            })
     }
 
     onGenderSubmit(gender) {
@@ -30,10 +45,26 @@ export default class EstabForm extends Component {
         });
     }
 
-    onCommentsSubmit() {
-        // const input = { comments: this.state.comments };
-        // Post submitted form
-        this.setState({comments: ''});
+    submitForm() {
+        superagent.post('/user_establishments').
+            send({
+                comments: this.state.comments,
+                establishmentId: this.state.establishmentId,
+                gender: this.state.gender,
+                rating: this.state.rating,
+                userId: this.state.userId
+            }).
+            set('Accept', 'application/json').
+            then(() => {
+                this.setState({
+                    commentSet: false,
+                    comments: '',
+                    gender: '',
+                    genderSet: false,
+                    rating: '',
+                    ratingSet: false
+                });
+            });
     }
 
     handleUserInput(obj) {
@@ -49,15 +80,11 @@ export default class EstabForm extends Component {
                         this.onGenderSubmit(gender)
                     }
                 }/>
-                <p>{ this.state.gender }</p>
-                <p>{ this.state.genderSet.toString() }</p>
                 <EstabRating onRatingResponse={
                     (rating) => {
                         this.onRatingSubmit(rating)
                     }
                 }/>
-                <p>{ this.state.rating }</p>
-                <p>{ this.state.ratingSet.toString() }</p>
                 <EstabComments comments={ this.state.comments }
                                onUserInput={
                                    (object) => this.handleUserInput(object)
@@ -67,9 +94,14 @@ export default class EstabForm extends Component {
                                        this.onCommentsSubmit()
                                    }
                                }/>
-                <p>{ this.state.comments}</p>
-                <p>{ this.state.commentSet.toString() }</p>
-                <button className="btn btn-success">Submit</button>
+                <button className="btn btn-success"
+                        onClick={
+                          () => {
+                              this.submitForm();
+                          }
+                        }>
+                    Submit
+                </button>
             </div>
         )
     }
