@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Tab, TabList, TabPanel, Tabs} from 'react-tabs';
 import EstabForm from './establishments/EstabForm';
+import EstabProfile from './establishments/EstabProfile';
 import Foursquare from '../../foursquareApiKey';
 import superagent from 'superagent';
 
@@ -52,13 +53,12 @@ export default class Establishment extends Component {
                     <Tab>Profile</Tab>
                     <Tab>Form</Tab>
                   </TabList>
-
-                  <TabPanel>
-                    <h2>Hello, I will soon be the Estab Profile page</h2>
-                  </TabPanel>
-                  <TabPanel>
-                    <EstabForm venueId={ this.state.venueId }/>
-                  </TabPanel>
+                    <TabPanel>
+                        <EstabProfile venueId={ this.state.venueId }/>
+                    </TabPanel>
+                    <TabPanel>
+                        <EstabForm venueId={ this.state.venueId }/>
+                    </TabPanel>
                 </Tabs>
             </div>
         )
