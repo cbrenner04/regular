@@ -6,10 +6,10 @@ export default class EstabProfile extends Component {
         super();
         this.state = {
             overall: 'None yet.',
-            neutral: "None yet.",
-            family: "None yet.",
-            women: "None yet.",
-            men: "None yet.",
+            neutral: 'None yet.',
+            family: 'None yet.',
+            women: 'None yet.',
+            men: 'None yet.',
             estabs: []
         }
     }
@@ -41,13 +41,13 @@ export default class EstabProfile extends Component {
 
                     res.forEach((item) => {
                         obj.overall += item.rating;
-                        if (item.bathroomGender === "gender neutral") {
+                        if (item.bathroomGender === 'gender neutral') {
                             obj.neutral += item.rating;
-                        } else if (item.bathroomGender === "family") {
+                        } else if (item.bathroomGender === 'family') {
                             obj.family += item.rating;
-                        } else if (item.bathroomGender === "female") {
+                        } else if (item.bathroomGender === 'female') {
                             obj.women += item.rating;
-                        } else if (item.bathroomGender === "male") {
+                        } else if (item.bathroomGender === 'male') {
                             obj.men += item.rating;
                         }
                     });
