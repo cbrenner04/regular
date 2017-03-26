@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 
+const TERRIBLE_RATING = 1;
+const DECENT_RATING = 2;
+const SPLENDID_RATING = 3;
+
 export default class EstabRating extends Component {
     onRating(rating) {
         this.props.onRatingResponse(rating);
@@ -13,7 +17,7 @@ export default class EstabRating extends Component {
                         <button className="btn btn-default"
                                 onClick={
                                     () => {
-                                        this.onRating(1)
+                                        this.onRating(TERRIBLE_RATING)
                                     }
                                 }>
                             Terrible
@@ -21,7 +25,7 @@ export default class EstabRating extends Component {
                         <button className="btn btn-default"
                                 onClick={
                                     () => {
-                                        this.onRating(2)
+                                        this.onRating(DECENT_RATING)
                                     }
                                 }>
                             Decent
@@ -29,7 +33,7 @@ export default class EstabRating extends Component {
                         <button className="btn btn-default"
                                 onClick={
                                     () => {
-                                        this.onRating(3)
+                                        this.onRating(SPLENDID_RATING)
                                     }
                                 }>
                             Splendid
