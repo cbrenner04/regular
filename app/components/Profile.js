@@ -6,12 +6,26 @@ import UserProfileCheckIn from './profiles/UserProfileCheckIn.js';
 import {UserProfileForm} from 'react-stormpath';
 import UserProfileRating from './profiles/UserProfileRating.js';
 
+const TIMEOUT_LENGTH = 500;
+
 export default class Profile extends Component {
     constructor() {
         super();
         this.state = {
             estabs: []
         }
+    }
+    componentDidMount() {
+        setTimeout(() => {
+            const {userId} = this.props
+            superagent.get(`/user_establishments/${userId}/user`).query(null).
+                set('Accept', 'text/json').
+                then((response) => {
+                    const res = response.body;
+
+                    this.setState({estabs: res})
+                });
+        }, TIMEOUT_LENGTH);
     }
     render () {
         return (
@@ -32,10 +46,10 @@ export default class Profile extends Component {
                             <Tab>Settings</Tab>
                           </TabList>
                           <TabPanel>
-                            <UserProfileCheckIn />
+                            <UserProfileCheckIn establiments={this.state.estabs}/>
                           </TabPanel>
                           <TabPanel>
-                            <UserProfileRating />
+                            <UserProfileRating establiments={this.state.estabs}/>
                           </TabPanel>
                           <TabPanel>
                             <UserProfileForm />

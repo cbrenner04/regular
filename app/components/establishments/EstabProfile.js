@@ -19,7 +19,8 @@ export default class EstabProfile extends Component {
     componentDidMount() {
         setTimeout(() => {
             const {venueId} = this.props
-            superagent.get(`/user_establishments/${venueId}`).query(null).
+            superagent.get(`/user_establishments/${venueId}/establishment`).
+                query(null).
                 set('Accept', 'text/json').
                 then((response) => {
                     const res = response.body;

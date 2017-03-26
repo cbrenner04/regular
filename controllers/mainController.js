@@ -75,16 +75,27 @@ module.exports = function(app) {
         }
     });
 
-    app.get('/user_establishments/:id', function(req, res) {
-        var requestedBathroom = req.params.id
-        if (requestedBathroom) {
-            UserEstablishment.find({establishmentId: requestedBathroom},
+    app.get('/user_establishments/:id/:type', function(req, res) {
+        var identifier = req.params.id;
+        var type = req.params.type;
+        if (identifier && (type === 'establishment')) {
+            UserEstablishment.find({establishmentId: identifier},
                 function (err, bRoom) {
                     if (err) {
                         res.send(err);
                     }
 
                     res.json(bRoom);
+                }
+            );
+        } else if (identifier && (type === 'user')) {
+            UserEstablishment.find({userId: identifier},
+                function (error, array) {
+                    if (error) {
+                        res.send(error);
+                    }
+
+                    res.json(array);
                 }
             );
         }
