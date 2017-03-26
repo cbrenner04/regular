@@ -1,18 +1,32 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-export default class UserProfileCheckIn extends Component {
-    render() {
-        return (
-            <div className="row">
-              <div>
-                <h4>Your Ratings:</h4>
-              </div>
-              <div className="well well-sm">
-                <p>Name: This Fine Place</p>
-                <p>Your Rating: Splendid</p>
-                <p>Comments:<br /> "yoohoo! Best shit I ever took!"</p>
-              </div>
-            </div>
-        )
-    }
-}
+const UserProfileCheckIn = () =>
+    <div className="row">
+        <div className="well well-sm">
+            <p><b>Name:</b> This Fine Place</p>
+            <p><b>Your Rating:</b> Splendid</p>
+            <p><b>Comments:</b><br /> "yoohoo! Best shit I ever took!"</p>
+        </div>
+        <div className="well well-sm">
+            <p><b>Name:</b> This Fine Place</p>
+            <p><b>Your Rating:</b> Splendid</p>
+            <p><b>Comments:</b><br /> "yoohoo! Best shit I ever took!"</p>
+        </div>
+        <div className="well well-sm">
+            <p><b>Name:</b> This Fine Place</p>
+            <p><b>Your Rating:</b> Splendid</p>
+            <p><b>Comments:</b><br /> "yoohoo! Best shit I ever took!"</p>
+        </div>
+        <div className="well well-sm">
+            <p><b>Name:</b> This Fine Place</p>
+            <p><b>Your Rating:</b> Splendid</p>
+            <p><b>Comments:</b><br /> "yoohoo! Best shit I ever took!"</p>
+        </div>
+        <div className="well well-sm">
+            <p><b>Name:</b> This Fine Place</p>
+            <p><b>Your Rating:</b> Splendid</p>
+            <p><b>Comments:</b><br /> "yoohoo! Best shit I ever took!"</p>
+        </div>
+    </div>
+
+export default UserProfileCheckIn;

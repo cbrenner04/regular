@@ -1,17 +1,23 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-export default class UserProfileCheckIn extends Component {
-    render() {
-        return (
-            <div className="row">
-              <div>
-                <h4>You Places:</h4>
-              </div>
-              <div className="well well-sm">
-                <p>Name: This Fine Place</p>
-                <p>Checked In: 3:02pm on Friday, March 17th, 2017</p>
-              </div>
-            </div>
-        )
-    }
-}
+const UserProfileCheckIn = () =>
+    <div className="row">
+        <div className="well well-sm">
+            <p><b>Name:</b> This Fine Place</p>
+            <p><b>Checked In:</b> 3:02pm 3/17/2017</p>
+        </div>
+        <div className="well well-sm">
+            <p><b>Name:</b> This Fine Place</p>
+            <p><b>Checked In:</b> 3:02pm 3/17/2017</p>
+        </div>
+        <div className="well well-sm">
+            <p><b>Name:</b> This Fine Place</p>
+            <p><b>Checked In:</b> 3:02pm 3/17/2017</p>
+        </div>
+        <div className="well well-sm">
+            <p><b>Name:</b> This Fine Place</p>
+            <p><b>Checked In:</b> 3:02pm 3/17/2017</p>
+        </div>
+    </div>
+
+export default UserProfileCheckIn;
