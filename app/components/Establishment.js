@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Tab, TabList, TabPanel, Tabs} from 'react-tabs';
 import EstabForm from './establishments/EstabForm';
+import EstabProfile from './establishments/EstabProfile';
 import Foursquare from '../../foursquareApiKey';
 import superagent from 'superagent';
 
