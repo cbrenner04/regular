@@ -2,6 +2,7 @@ var bodyParser = require('body-parser');
 var stormpath = require('express-stormpath');
 var User = require('../models/user.js');
 var Establishment = require('../models/establishment.js');
+var UserEstablishment = require('../models/UserEstablishment')
 var path = require('path');
 
 var BAD_REQUEST = 400;
@@ -64,6 +65,22 @@ module.exports = function(app) {
                 }
             );
         }
+    });
+
+    app.post('/user_establishments', function(request, response) {
+        var {body} = request;
+        UserEstablishment.create({
+            bathroomGender: body.gender,
+            comment: body.comments,
+            establishmentId: body.establishmentId,
+            rating: body.rating,
+            userId: body.userId
+        }, function(error, userEstablishment) {
+            if (error) {
+                response.send(error);
+            }
+            response.json(userEstablishment);
+        });
     });
 
     /* This is specific to StormPath and should not be touched unless you have
