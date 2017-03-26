@@ -54,7 +54,19 @@ export default class Establishment extends Component {
                   </TabList>
 
                   <TabPanel>
-                    <h2>Hello, I will soon be the Estab Profile page</h2>
+                    <div>
+                        <div>
+                            <h2>Ratings</h2>
+                            <h3 class="text-primary">Bathrooms Overall: {}</h3>
+                            <h4 class="text-warning">Gender Neutral: {}</h4>
+                            <h4 class="text-danger">Family: {}</h4>
+                            <h4 class="text-success">Men: {}</h4>
+                            <h4 class="text-info">Women: {}</h4>
+                        </div>
+                        <div class="well">
+                            Comment
+                        </div>
+                    </div>
                   </TabPanel>
                   <TabPanel>
                     <EstabForm venueId={ this.state.venueId }/>
