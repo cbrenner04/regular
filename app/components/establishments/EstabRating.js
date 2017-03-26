@@ -13,7 +13,7 @@ export default class EstabRating extends Component {
                         <button className="btn btn-default"
                                 onClick={
                                     () => {
-                                        this.onRating('terrible')
+                                        this.onRating(1)
                                     }
                                 }>
                             Terrible
@@ -21,7 +21,7 @@ export default class EstabRating extends Component {
                         <button className="btn btn-default"
                                 onClick={
                                     () => {
-                                        this.onRating('decent')
+                                        this.onRating(2)
                                     }
                                 }>
                             Decent
@@ -29,7 +29,7 @@ export default class EstabRating extends Component {
                         <button className="btn btn-default"
                                 onClick={
                                     () => {
-                                        this.onRating('splendid')
+                                        this.onRating(3)
                                     }
                                 }>
                             Splendid

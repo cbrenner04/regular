@@ -13,9 +13,8 @@ var userEstablishmentSchema = new Schema({
         type: Schema.Types.ObjectId
     }],
     rating: {
-        enum: ['terrible', 'decent', 'splendid'],
         required: true,
-        type: String
+        type: Number
     },
     userId: [{
         ref: 'User',
