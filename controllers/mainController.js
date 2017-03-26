@@ -2,7 +2,7 @@ var bodyParser = require('body-parser');
 var stormpath = require('express-stormpath');
 var User = require('../models/user.js');
 var Establishment = require('../models/establishment.js');
-var UserEstablishment = require('../models/UserEstablishment')
+var UserEstablishment = require('../models/userEstablishment')
 var path = require('path');
 
 var BAD_REQUEST = 400;
