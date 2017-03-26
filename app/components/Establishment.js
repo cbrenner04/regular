@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import EstabForm from './establishments/EstabForm';
 import Foursquare from '../../foursquareApiKey';
 import superagent from 'superagent';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 export default class Establishment extends Component {
     constructor() {
@@ -34,6 +35,10 @@ export default class Establishment extends Component {
             then(() => superagent.get(`/bathroom/${this.state.venueId}`))
     }
 
+    handleSelect(index, last) {
+        console.log('Selected tab: ' + index + ', Last tab: ' + last);
+    }
+
     render() {
         return (
             <div className="container">
@@ -45,9 +50,24 @@ export default class Establishment extends Component {
                     </div>
                 </div>
                 <br />
-                <EstabForm venueId={ this.state.venueId }/>
+
+                <Tabs
+                    onSelect={this.handleSelect}
+                    selectedIndex={0}
+                >
+                  <TabList>
+                    <Tab>Profile</Tab>
+                    <Tab>Form</Tab>
+                  </TabList>
+
+                  <TabPanel>
+                    <h2>Hello, I will soon be the Estab Profile page</h2>
+                  </TabPanel>
+                  <TabPanel>
+                    <EstabForm venueId={ this.state.venueId }/>
+                  </TabPanel>
+                </Tabs>
             </div>
         )
     }
 }
-
