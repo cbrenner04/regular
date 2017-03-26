@@ -19,7 +19,11 @@ var userEstablishmentSchema = new Schema({
     userId: [{
         ref: 'User',
         type: Schema.Types.ObjectId
-    }]
+    }],
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 var UserEstablishment =
