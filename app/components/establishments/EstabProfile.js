@@ -89,6 +89,8 @@ export default class EstabProfile extends Component {
                     {
                         this.state.estabs.map((estab) =>
                             <div className="well" key={estab._id}>
+                                <h3>{estab.user.givenName}</h3>
+                                <p>{estab.createdAt}</p>
                                 <h4>Gender: {estab.bathroomGender}</h4>
                                 <h4>Rating: {estab.rating}</h4>
                                 <p>{estab.comment}</p>
