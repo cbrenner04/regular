@@ -8,18 +8,19 @@ export default class EstabProfile extends Component {
         super();
         this.state = {
             estabs: [],
-            family: 'None yet.',
-            men: 'None yet.',
-            neutral: 'None yet.',
-            overall: 'None yet.',
-            women: 'None yet.'
+            family: '',
+            men: '',
+            neutral: '',
+            overall: '',
+            women: ''
         }
     }
 
     componentDidMount() {
         setTimeout(() => {
             const {venueId} = this.props
-            superagent.get(`/user_establishments/${venueId}`).query(null).
+            superagent.get(`/user_establishments/${venueId}/establishment`).
+                query(null).
                 set('Accept', 'text/json').
                 then((response) => {
                     const res = response.body;
@@ -50,11 +51,11 @@ export default class EstabProfile extends Component {
                     });
 
                     this.setState({
-                        family: obj.family / count,
-                        men: obj.men / count,
-                        neutral: obj.neutral / count,
-                        overall: obj.overall / count,
-                        women: obj.women / count
+                        family: obj.family / count || 'no ratings yet',
+                        men: obj.men / count || 'no ratings yet',
+                        neutral: obj.neutral / count || 'no ratings yet',
+                        overall: obj.overall / count || 'no ratings yet',
+                        women: obj.women / count || 'no ratings yet'
                     });
                 })
         }, TIMEOUT_LENGTH);
@@ -87,7 +88,7 @@ export default class EstabProfile extends Component {
                     <h2>Comments</h2>
                     {
                         this.state.estabs.map((estab) =>
-                            <div className="well">
+                            <div className="well" key={estab._id}>
                                 <h4>Gender: {estab.bathroomGender}</h4>
                                 <h4>Rating: {estab.rating}</h4>
                                 <p>{estab.comment}</p>

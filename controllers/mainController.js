@@ -57,10 +57,10 @@ module.exports = function(app) {
                         res.json(bRoom);
                     } else {
                         Establishment.create({
-                            fourSquareId: requestedBathroom,
-                            name: req.params.name,
                             address: req.params.address,
-                            crossStreet: req.params.crossStreet
+                            crossStreet: req.params.crossStreet,
+                            fourSquareId: requestedBathroom,
+                            name: req.params.name
                         },
                             function(error, bathroom) {
                                 if (error) {
@@ -75,16 +75,23 @@ module.exports = function(app) {
         }
     });
 
-    app.get('/user_establishments/:id', function(req, res) {
-        var requestedBathroom = req.params.id
-        if (requestedBathroom) {
-            UserEstablishment.find({establishmentId: requestedBathroom},
-                function (err, bRoom) {
+    app.get('/user_establishments/:id/:type', function(req, res) {
+        const identifier = req.params.id;
+        if (identifier) {
+            const {type} = req.params;
+            const obj = {};
+            obj[type] = identifier;
+
+            UserEstablishment.find({}).
+                populate('user').
+                populate('establishment').
+                where(obj).
+                exec(function (err, estabArray) {
                     if (err) {
                         res.send(err);
+                    } else {
+                        res.json(estabArray);
                     }
-
-                    res.json(bRoom);
                 }
             );
         }
@@ -95,9 +102,9 @@ module.exports = function(app) {
         UserEstablishment.create({
             bathroomGender: body.gender,
             comment: body.comments,
-            establishmentId: body.establishmentId,
+            establishment: body.establishmentId,
             rating: body.rating,
-            userId: body.userId
+            user: body.userId
         }, function(error, userEstablishment) {
             if (error) {
                 response.send(error);

@@ -5,7 +5,10 @@ import superagent from 'superagent';
 const AuthLanding = () => {
     const setUser = () => {
         superagent.get('/email').query(null).
-            set('Accept', 'text/json').then(() => {console.log('HEROKU')})
+            set('Accept', 'text/json').
+            then(() => {
+                console.log('HEROKU')
+            })
     };
 
     setUser();
