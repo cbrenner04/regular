@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import moment from 'moment';
 import superagent from 'superagent';
 
 const TIMEOUT_LENGTH = 500;
@@ -90,7 +91,7 @@ export default class EstabProfile extends Component {
                         this.state.estabs.map((estab) =>
                             <div className="well" key={estab._id}>
                                 <h3>{estab.user.givenName}</h3>
-                                <p>{estab.createdAt}</p>
+                                <p>{moment(estab.createdAt).format('LLL')}</p>
                                 <h4>Gender: {estab.bathroomGender}</h4>
                                 <h4>Rating: {estab.rating}</h4>
                                 <p>{estab.comment}</p>
