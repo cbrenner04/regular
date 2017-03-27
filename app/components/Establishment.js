@@ -38,7 +38,10 @@ export default class Establishment extends Component {
                                      `/${this.state.venueName}/` +
                                      `${this.state.venueAddress}/` +
                                      `${this.state.venueCrossStreet}`)
-            )
+            ).
+            then((response) => {
+                this.setState({venueId: response.body._id})
+            })
     }
 
     render() {

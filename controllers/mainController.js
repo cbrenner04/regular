@@ -76,30 +76,22 @@ module.exports = function(app) {
     });
 
     app.get('/user_establishments/:id/:type', function(req, res) {
-        var identifier = req.params.id;
-        var {type} = req.params;
-        if (identifier && type === 'establishment') {
-            UserEstablishment.find({establishment: identifier}).
-                populate('users').
+        const identifier = req.params.id;
+        if (identifier) {
+            const {type} = req.params;
+            const obj = {};
+            obj[type] = identifier;
+
+            UserEstablishment.find({}).
+                populate('user').
                 populate('establishment').
-                exec(function (err, bRoom) {
+                where(obj).
+                exec(function (err, estabArray) {
                     if (err) {
                         res.send(err);
+                    } else {
+                        res.json(estabArray);
                     }
-
-                    res.json(bRoom);
-                }
-            );
-        } else if (identifier && type === 'user') {
-            UserEstablishment.find({user: identifier}).
-                populate('users').
-                populate('establishment').
-                exec(function (error, array) {
-                    if (error) {
-                        res.send(error);
-                    }
-
-                    res.json(array);
                 }
             );
         }

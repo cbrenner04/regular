@@ -12,18 +12,18 @@ var userEstablishmentSchema = new Schema({
         default: Date.now,
         type: Date
     },
-    establishment: [{
+    establishment: {
         ref: 'Establishment',
         type: Schema.Types.ObjectId
-    }],
+    },
     rating: {
         required: true,
         type: Number
     },
-    user: [{
+    user: {
         ref: 'User',
         type: Schema.Types.ObjectId
-    }]
+    }
 });
 
 var UserEstablishment =

@@ -6,23 +6,26 @@ import {UserProfileForm} from 'react-stormpath';
 import UserProfileRating from './profiles/UserProfileRating.js';
 import superagent from 'superagent';
 
-const TIMEOUT_LENGTH = 500;
-
 export default class Profile extends Component {
     constructor() {
         super();
         this.state = {estabs: []}
     }
+
     componentDidMount() {
-        setTimeout(() => {
-            const {userId} = this.props
-            superagent.get(`/user_establishments/${userId}/user`).query(null).
-                set('Accept', 'text/json').
-                then((response) => {
-                    const res = response.body;
-                    this.setState({estabs: res})
-                });
-        }, TIMEOUT_LENGTH);
+        superagent.get('/email').query(null).
+            set('Accept', 'text/json').
+            then((response) => {
+                const user = response.body._id;
+
+                superagent.get(`/user_establishments/${user}/user`).query(null).
+                    set('Accept', 'text/json').
+                    then((result) => {
+                        const res = result.body;
+
+                        this.setState({estabs: res})
+                    });
+            })
     }
     render () {
         return (
@@ -36,24 +39,24 @@ export default class Profile extends Component {
                     </div>
                     <div className="row">
                         <div className="col-xs-12">
-                          <Tabs selectedIndex={0}>
-                          <TabList>
-                            <Tab>Check-ins</Tab>
-                            <Tab>Ratings</Tab>
-                            <Tab>Settings</Tab>
-                          </TabList>
-                          <TabPanel>
-                            <UserProfileCheckIn
-                                establishments={this.state.estabs}/>
-                          </TabPanel>
-                          <TabPanel>
-                            <UserProfileRating
-                                establishments={this.state.estabs}/>
-                          </TabPanel>
-                          <TabPanel>
-                            <UserProfileForm />
-                          </TabPanel>
-                          </Tabs>
+                            <Tabs selectedIndex={0}>
+                                <TabList>
+                                    <Tab>Check-ins</Tab>
+                                    <Tab>Ratings</Tab>
+                                    <Tab>Settings</Tab>
+                                </TabList>
+                                <TabPanel>
+                                    <UserProfileCheckIn
+                                        establishments={this.state.estabs}/>
+                                </TabPanel>
+                                <TabPanel>
+                                    <UserProfileRating
+                                        establishments={this.state.estabs}/>
+                                </TabPanel>
+                                <TabPanel>
+                                    <UserProfileForm />
+                                </TabPanel>
+                            </Tabs>
                         </div>
                     </div>
                 </div>
