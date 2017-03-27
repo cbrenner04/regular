@@ -8,6 +8,10 @@ var userEstablishmentSchema = new Schema({
         type: String
     },
     comment: {type: String},
+    createdAt: {
+        default: Date.now,
+        type: Date
+    },
     establishment: [{
         ref: 'Establishment',
         type: Schema.Types.ObjectId
@@ -19,11 +23,7 @@ var userEstablishmentSchema = new Schema({
     user: [{
         ref: 'User',
         type: Schema.Types.ObjectId
-    }],
-    createdAt: {
-        type: Date,
-        default: Date.now
-    }
+    }]
 });
 
 var UserEstablishment =

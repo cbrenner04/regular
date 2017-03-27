@@ -1,19 +1,17 @@
 import React, {Component} from 'react';
 import {Tab, TabList, TabPanel, Tabs} from 'react-tabs';
 import DocumentTitle from 'react-document-title';
-import superagent from 'superagent';
 import UserProfileCheckIn from './profiles/UserProfileCheckIn.js';
 import {UserProfileForm} from 'react-stormpath';
 import UserProfileRating from './profiles/UserProfileRating.js';
+import superagent from 'superagent';
 
 const TIMEOUT_LENGTH = 500;
 
 export default class Profile extends Component {
     constructor() {
         super();
-        this.state = {
-            estabs: []
-        }
+        this.state = {estabs: []}
     }
     componentDidMount() {
         setTimeout(() => {
@@ -22,7 +20,6 @@ export default class Profile extends Component {
                 set('Accept', 'text/json').
                 then((response) => {
                     const res = response.body;
-                    console.log(res)
                     this.setState({estabs: res})
                 });
         }, TIMEOUT_LENGTH);
@@ -46,10 +43,12 @@ export default class Profile extends Component {
                             <Tab>Settings</Tab>
                           </TabList>
                           <TabPanel>
-                            <UserProfileCheckIn establiments={this.state.estabs}/>
+                            <UserProfileCheckIn
+                                establishments={this.state.estabs}/>
                           </TabPanel>
                           <TabPanel>
-                            <UserProfileRating establiments={this.state.estabs}/>
+                            <UserProfileRating
+                                establishments={this.state.estabs}/>
                           </TabPanel>
                           <TabPanel>
                             <UserProfileForm />

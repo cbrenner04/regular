@@ -57,10 +57,10 @@ module.exports = function(app) {
                         res.json(bRoom);
                     } else {
                         Establishment.create({
-                            fourSquareId: requestedBathroom,
-                            name: req.params.name,
                             address: req.params.address,
-                            crossStreet: req.params.crossStreet
+                            crossStreet: req.params.crossStreet,
+                            fourSquareId: requestedBathroom,
+                            name: req.params.name
                         },
                             function(error, bathroom) {
                                 if (error) {
@@ -77,12 +77,12 @@ module.exports = function(app) {
 
     app.get('/user_establishments/:id/:type', function(req, res) {
         var identifier = req.params.id;
-        var type = req.params.type;
-        if (identifier && (type === 'establishment')) {
-            UserEstablishment.find({establishment: identifier})
-                .populate('users')
-                .populate('establishment')
-                .exec(function (err, bRoom) {
+        var {type} = req.params;
+        if (identifier && type === 'establishment') {
+            UserEstablishment.find({establishment: identifier}).
+                populate('users').
+                populate('establishment').
+                exec(function (err, bRoom) {
                     if (err) {
                         res.send(err);
                     }
@@ -90,11 +90,11 @@ module.exports = function(app) {
                     res.json(bRoom);
                 }
             );
-        } else if (identifier && (type === 'user')) {
-            UserEstablishment.find({user: identifier})
-                .populate('users')
-                .populate('establishment')
-                .exec(function (error, array) {
+        } else if (identifier && type === 'user') {
+            UserEstablishment.find({user: identifier}).
+                populate('users').
+                populate('establishment').
+                exec(function (error, array) {
                     if (error) {
                         res.send(error);
                     }
