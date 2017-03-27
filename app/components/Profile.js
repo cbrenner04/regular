@@ -22,7 +22,7 @@ export default class Profile extends Component {
                 set('Accept', 'text/json').
                 then((response) => {
                     const res = response.body;
-
+                    console.log(res)
                     this.setState({estabs: res})
                 });
         }, TIMEOUT_LENGTH);

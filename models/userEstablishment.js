@@ -8,7 +8,7 @@ var userEstablishmentSchema = new Schema({
         type: String
     },
     comment: {type: String},
-    establishmentId: [{
+    establishment: [{
         ref: 'Establishment',
         type: Schema.Types.ObjectId
     }],
@@ -16,7 +16,7 @@ var userEstablishmentSchema = new Schema({
         required: true,
         type: Number
     },
-    userId: [{
+    user: [{
         ref: 'User',
         type: Schema.Types.ObjectId
     }],

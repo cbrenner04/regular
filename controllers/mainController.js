@@ -79,8 +79,10 @@ module.exports = function(app) {
         var identifier = req.params.id;
         var type = req.params.type;
         if (identifier && (type === 'establishment')) {
-            UserEstablishment.find({establishmentId: identifier},
-                function (err, bRoom) {
+            UserEstablishment.find({establishment: identifier})
+                .populate('users')
+                .populate('establishment')
+                .exec(function (err, bRoom) {
                     if (err) {
                         res.send(err);
                     }
@@ -89,8 +91,10 @@ module.exports = function(app) {
                 }
             );
         } else if (identifier && (type === 'user')) {
-            UserEstablishment.find({userId: identifier},
-                function (error, array) {
+            UserEstablishment.find({user: identifier})
+                .populate('users')
+                .populate('establishment')
+                .exec(function (error, array) {
                     if (error) {
                         res.send(error);
                     }
@@ -106,9 +110,9 @@ module.exports = function(app) {
         UserEstablishment.create({
             bathroomGender: body.gender,
             comment: body.comments,
-            establishmentId: body.establishmentId,
+            establishment: body.establishmentId,
             rating: body.rating,
-            userId: body.userId
+            user: body.userId
         }, function(error, userEstablishment) {
             if (error) {
                 response.send(error);

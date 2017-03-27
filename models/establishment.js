@@ -1,6 +1,10 @@
 var mongoose = require('mongoose');
 var {Schema} = mongoose;
 var establishmentSchema = new Schema({
+    _userEstablishment: {
+        type: String,
+        ref: 'UserEstablishment'
+    },
     fourSquareId: {
         required: true,
         type: String,

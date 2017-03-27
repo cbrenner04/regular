@@ -1,6 +1,10 @@
 var mongoose = require('mongoose');
 var {Schema} = mongoose;
 var userSchema = new Schema({
+    _userEstablishment: {
+        type: String,
+        ref: 'UserEstablishment'
+    },
     email: {
         required: true,
         type: String,
