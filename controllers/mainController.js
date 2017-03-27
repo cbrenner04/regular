@@ -28,7 +28,10 @@ module.exports = function(app) {
                 if (email) {
                     res.json(email);
                 } else {
-                    User.create({email: req.user.email},
+                    User.create({
+                        email: req.user.email,
+                        givenName: req.user.givenName
+                    },
                         function(error, newEmail) {
                             if (err) {
                                 res.send(error);
@@ -41,7 +44,7 @@ module.exports = function(app) {
         }
     });
 
-    app.get('/bathroom/:id', function(req, res) {
+    app.get('/bathroom/:id/:name/:address/:crossStreet', function(req, res) {
         var requestedBathroom = req.params.id
         if (requestedBathroom) {
             Establishment.findOne({fourSquareId: requestedBathroom},
@@ -53,7 +56,12 @@ module.exports = function(app) {
                     if (bRoom) {
                         res.json(bRoom);
                     } else {
-                        Establishment.create({fourSquareId: requestedBathroom},
+                        Establishment.create({
+                            fourSquareId: requestedBathroom,
+                            name: req.params.name,
+                            address: req.params.address,
+                            crossStreet: req.params.crossStreet
+                        },
                             function(error, bathroom) {
                                 if (error) {
                                     res.send(error);

@@ -5,7 +5,10 @@ var establishmentSchema = new Schema({
         required: true,
         type: String,
         unique: true
-    }
+    },
+    name: {type: String},
+    address: {type: String},
+    crossStreet: {type: String}
 });
 
 var Establishment = mongoose.model('Establishment', establishmentSchema);
