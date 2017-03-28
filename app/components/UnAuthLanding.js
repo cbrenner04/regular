@@ -5,24 +5,24 @@ import React from 'react';
 const UnAuthLanding = () =>
     <div className="container">
         <div className="jumbotron text-center" id="jumbo">
-            <div className="well well-sm main-wrapper">
+            <div>
                 <div className="main-text">
-                    <h1 id="opacity-one">REGULAR</h1>
-                    <h3 id="opacity-one">
-                        Rate and find any bathroom in the city
+                    <h1 className="text-primary">REGULAR</h1>
+                    <h3 className="text-primary">
+                        <b>Rate and find any bathroom in the city</b>
                     </h3>
-                    <h4 id="opacity-one">
-                      Made the Editor's Pick on the Apple App store
+                    <h4 className="text-primary">
+                        <b>Made the Editor's Pick on the Apple App store</b>
                     </h4>
                     <NotAuthenticated>
                         <Link className="btn btn-primary"
-                              id="opacity-one" to="/register">Register!</Link>
+                              to="/register">Register!</Link>
                     </NotAuthenticated>
                 </div>
             </div>
         </div>
         <hr />
-        <div className="row">
+        <div>
             <div className="well well-lg">
                 <h3>ABOUT US</h3>
                 <p>

@@ -1,19 +1,14 @@
 #jumbo {
     background-image: url('../img/city-scape3.jpg');
+    width: 100%;
     color: white;
     margin: auto;
+    overflow: hidden;
 }
-.main-text {
+/*.main-text {
     margin-top: 0px;
 }
-.main-wrapper {
-    opacity: 0.7;
-}
-
-#opacity-one {
-    opacity: 1;
-}
-
+*/
 .btn-group-justified {
     height: 50px;
 }
