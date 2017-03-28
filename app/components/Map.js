@@ -7,12 +7,39 @@ export default class Map extends Component {
     constructor() {
         super();
         this.state = {
+            location: {
+                lat: 41.8818695,
+                lng: -87.629838
+            },
             showInfo: false
         }
     }
 
-    componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
+    componentDidMount() {
+        navigator.geolocation.getCurrentPosition((position) => {
+            this.setState({
+                location: {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                }
+            })
+
+            console.log(this.state.location);
+
+        });
+    }
+
+    handleMarkerClick(targetMarker) {
+        // console.log(targetVenue);
+        this.setState({
+            markers: this.props.markers.map(marker => {
+                if (marker === targetMarker) {
+                    return Object.assign({}, marker, { showInfo: true })
+                } else {
+                    return Object.assign({}, marker, { showInfo: false })
+                }
+            })
+        })
     }
 
     render() {
@@ -25,8 +52,8 @@ export default class Map extends Component {
                     }}></div>
                 }
                 googleMapElement = {
-                    <GoogleMap defaultZoom={18}
-                               defaultCenter={this.props.center}
+                    <GoogleMap defaultZoom={16}
+                               defaultCenter={this.state.location}
                                options={{
                                    mapTypeControl: false,
                                    streetViewControl: false
@@ -45,7 +72,7 @@ export default class Map extends Component {
                                 return (
                                     <Marker
                                         key={index} {...marker}
-                                        onClick={() => this.props.infoWindowToggle(marker)}
+                                        onClick={() => this.handleMarkerClick(marker)}
                                     >
                                         { marker.showInfo && (
                                             <InfoWindow>

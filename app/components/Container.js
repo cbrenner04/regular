@@ -12,8 +12,7 @@ class Container extends Component {
                 lat: 41.8818695,
                 lng: -87.629838
             },
-            venues: [],
-            estabs: []
+            venues: []
         }
     }
 
@@ -26,6 +25,7 @@ class Container extends Component {
                 }
             })
 
+            console.log(this.state.location);
             this.doFourSquare();
 
         }, () => {
@@ -54,19 +54,6 @@ class Container extends Component {
             })
     }
 
-    handleMarkerClick(targetVenue) {
-        console.log(targetVenue);
-        this.setState({
-            venues: this.state.venues.map(venue => {
-                if (venue === targetVenue) {
-                    return Object.assign({}, venue, { showInfo: true })
-                } else {
-                    return Object.assign({}, venue, { showInfo: false })
-                }
-            })
-        })
-    }
-
     render() {
         return (
             <div>
@@ -75,9 +62,7 @@ class Container extends Component {
                     height: '50vh',
                     width: '100%'
                 }}>
-                    <Map center={this.state.location}
-                         markers={this.state.venues}
-                         infoWindowToggle={(marker) => this.handleMarkerClick(marker)} />
+                    <Map markers={this.state.venues} />
                 </div>
                 <Places venues={this.state.venues}/>
             </div>
