@@ -54,7 +54,8 @@ export default class Establishment extends Component {
                         const item = response.body.response.photos.items[0]
 
                         this.setState({
-                            venueImgUrl: `${item.prefix}${item.width}x${item.height}${item.suffix}`
+                            venueImgUrl: `${item.prefix}${item.width}x` +
+                                         `${item.height}${item.suffix}`
                         })
                     })
 
@@ -79,7 +80,8 @@ export default class Establishment extends Component {
                     <Tab>Rate It</Tab>
                   </TabList>
                     <TabPanel>
-                        <EstabProfile venueId={ this.state.venueId } venueImgUrl={ this.state.venueImgUrl }/>
+                        <EstabProfile venueId={ this.state.venueId }
+                                      venueImgUrl={ this.state.venueImgUrl }/>
                     </TabPanel>
                     <TabPanel>
                         <EstabForm venueId={ this.state.venueId }/>
