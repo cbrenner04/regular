@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 const UserProfileCheckIn = ({establishments}) =>
-    <div className="row">
+    <div>
         {
             establishments.map((establishment) =>
                 <div className="well well-sm" key={establishment._id}>

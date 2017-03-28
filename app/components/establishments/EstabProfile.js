@@ -65,7 +65,7 @@ export default class EstabProfile extends Component {
     render() {
         return (
             <div>
-                <div className="row">
+                <div>
                     <h2>Ratings</h2>
                     <div className="well col-md-12">
                         <div className="col-md-6">
@@ -90,7 +90,7 @@ export default class EstabProfile extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="row">
+                <div>
                     <h2>Comments</h2>
                     {
                         this.state.estabs.map((estab) =>

@@ -38,9 +38,9 @@ export default class EstabRating extends Component {
     }
     render() {
         return (
-            <div className="row">
+            <div>
                 <h2>Rate this bathroom:</h2>
-                <div className="col-xs-12">
+                <div className="col-xs-12" style={{paddingLeft: 0}}>
                     <button className={`btn btn-${this.state.terribleButtonStyle}`}
                             onClick={
                                 () => {
