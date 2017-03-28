@@ -5,7 +5,11 @@ const UserProfileCheckIn = ({establishments}) =>
         {
             establishments.map((establishment) =>
                 <div className="well well-sm" key={establishment._id}>
-                    <p><b>Name:</b> {establishment.establishment.name}</p>
+                    <p><b>Name: </b>
+                        <a href={`/#/establishments/${establishment.establishment.fourSquareId}`}>
+                            {establishment.establishment.name}
+                        </a>
+                    </p>
                     <p><b>Checked In:</b> {moment(establishment.createdAt).format('LLL')}</p>
                 </div>
             )

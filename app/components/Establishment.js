@@ -75,8 +75,8 @@ export default class Establishment extends Component {
 
                 <Tabs selectedIndex={0}>
                   <TabList>
-                    <Tab>Profile</Tab>
-                    <Tab>Form</Tab>
+                    <Tab>Overview</Tab>
+                    <Tab>Rate It</Tab>
                   </TabList>
                     <TabPanel>
                         <EstabProfile venueId={ this.state.venueId } venueImgUrl={ this.state.venueImgUrl }/>
