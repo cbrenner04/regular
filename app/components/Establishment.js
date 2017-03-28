@@ -12,7 +12,8 @@ export default class Establishment extends Component {
             venueAddress: '',
             venueCrossStreet: '',
             venueId: '',
-            venueName: ''
+            venueName: '',
+            venueImgUrl: ''
         }
     }
 
@@ -41,6 +42,22 @@ export default class Establishment extends Component {
             ).
             then((response) => {
                 this.setState({venueId: response.body._id})
+            }).
+            then(() => {
+                const url = 'https://api.foursquare.com/v2/venues/' +
+                            `${this.props.params.eId}/photos?v=20140806&client_id=` +
+                            `${Foursquare.id}&client_secret=${Foursquare.secret}`
+
+                superagent.get(url).query(null).
+                    set('Accept', 'text/json').
+                    then((response) => {
+                        const item = response.body.response.photos.items[0]
+
+                        this.setState({
+                            venueImgUrl: `${item.prefix}${item.width}x${item.height}${item.suffix}`
+                        })
+                    })
+
             })
     }
 
@@ -62,7 +79,7 @@ export default class Establishment extends Component {
                     <Tab>Form</Tab>
                   </TabList>
                     <TabPanel>
-                        <EstabProfile venueId={ this.state.venueId }/>
+                        <EstabProfile venueId={ this.state.venueId } venueImgUrl={ this.state.venueImgUrl }/>
                     </TabPanel>
                     <TabPanel>
                         <EstabForm venueId={ this.state.venueId }/>

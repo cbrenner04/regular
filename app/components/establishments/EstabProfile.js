@@ -65,27 +65,32 @@ export default class EstabProfile extends Component {
     render() {
         return (
             <div>
-                <div>
+                <div className="row">
                     <h2>Ratings</h2>
-                    <div className="well">
-                        <h3 className="text-success">
-                            Bathrooms Overall: {this.state.overall}
-                        </h3>
-                        <h4 className="text-info">
-                            Gender Neutral: {this.state.neutral}
-                        </h4>
-                        <h4 className="text-info">
-                            Family: {this.state.family}
-                        </h4>
-                        <h4 className="text-info">
-                            Female: {this.state.women}
-                        </h4>
-                        <h4 className="text-info">
-                            Male: {this.state.men}
-                        </h4>
+                    <div className="well col-md-12">
+                        <div className="col-md-6">
+                            <h3 className="text-success">
+                                Bathrooms Overall: {this.state.overall}
+                            </h3>
+                            <h4 className="text-info">
+                                Gender Neutral: {this.state.neutral}
+                            </h4>
+                            <h4 className="text-info">
+                                Family: {this.state.family}
+                            </h4>
+                            <h4 className="text-info">
+                                Female: {this.state.women}
+                            </h4>
+                            <h4 className="text-info">
+                                Male: {this.state.men}
+                            </h4>
+                        </div>
+                        <div className="col-md-6 text-center">
+                            <img src={this.props.venueImgUrl} height='172' style={{margin: '20px 0'}}/>
+                        </div>
                     </div>
                 </div>
-                <div>
+                <div className="row">
                     <h2>Comments</h2>
                     {
                         this.state.estabs.map((estab) =>
