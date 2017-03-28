@@ -1,47 +1,66 @@
 import {GoogleMap, GoogleMapLoader, InfoWindow, Marker} from 'react-google-maps'
-import React from 'react'
+import React, {Component} from 'react'
 
 const OFFSET = 1;
 
-const Map = ({center, markers}) =>
-    <GoogleMapLoader
-        containerElement = {
-            <div style={{
-                height: '100%',
-                width: '100%'
-            }}></div>
+export default class Map extends Component {
+    constructor() {
+        super();
+        this.state = {
+            showInfo: false
         }
-        googleMapElement = {
-            <GoogleMap defaultZoom={18}
-                       defaultCenter={center}
-                       options={{
-                           mapTypeControl: false,
-                           streetViewControl: false
-                       }}>
+    }
 
-                {
-                    markers.map((venue, index) => {
-                        const marker = {
-                            name: venue.name,
-                            position: {
-                                lat: venue.location.lat,
-                                lng: venue.location.lng
-                            }
-                        }
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps);
+    }
 
-                        return (
-                            <Marker key={index} {...marker}>
-                                <InfoWindow>
-                                    <a href={`/#/establishments/${venue.id}`}>
-                                        {`${index + OFFSET}. ${venue.name}`}
-                                    </a>
-                                </InfoWindow>
-                            </Marker>
-                        )
-                    })
+    render() {
+        return (
+            <GoogleMapLoader
+                containerElement = {
+                    <div style={{
+                        height: '100%',
+                        width: '100%'
+                    }}></div>
                 }
-            </GoogleMap>
-        }
-    />
+                googleMapElement = {
+                    <GoogleMap defaultZoom={18}
+                               defaultCenter={this.props.center}
+                               options={{
+                                   mapTypeControl: false,
+                                   streetViewControl: false
+                               }}>
 
-export default Map
+                        {
+                            this.props.markers.map((venue, index) => {
+                                const marker = {
+                                    name: venue.name,
+                                    position: {
+                                        lat: venue.location.lat,
+                                        lng: venue.location.lng
+                                    }
+                                }
+
+                                return (
+                                    <Marker
+                                        key={index} {...marker}
+                                        onClick={() => this.props.infoWindowToggle(marker)}
+                                    >
+                                        { marker.showInfo && (
+                                            <InfoWindow>
+                                                <a href={`/#/establishments/${venue.id}`}>
+                                                    {`${index + OFFSET}. ${venue.name}`}
+                                                </a>
+                                            </InfoWindow>
+                                        )}
+                                    </Marker>
+                                )
+                            })
+                        }
+                    </GoogleMap>
+                }
+            />
+        )
+    }
+}

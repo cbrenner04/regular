@@ -12,7 +12,8 @@ class Container extends Component {
                 lat: 41.8818695,
                 lng: -87.629838
             },
-            venues: []
+            venues: [],
+            estabs: []
         }
     }
 
@@ -53,6 +54,19 @@ class Container extends Component {
             })
     }
 
+    handleMarkerClick(targetVenue) {
+        console.log(targetVenue);
+        this.setState({
+            venues: this.state.venues.map(venue => {
+                if (venue === targetVenue) {
+                    return Object.assign({}, venue, { showInfo: true })
+                } else {
+                    return Object.assign({}, venue, { showInfo: false })
+                }
+            })
+        })
+    }
+
     render() {
         return (
             <div>
@@ -62,9 +76,10 @@ class Container extends Component {
                     width: '100%'
                 }}>
                     <Map center={this.state.location}
-                         markers={this.state.venues} />
+                         markers={this.state.venues}
+                         infoWindowToggle={(marker) => this.handleMarkerClick(marker)} />
                 </div>
-                <Places venues={this.state.venues} />
+                <Places venues={this.state.venues}/>
             </div>
         )
     }
