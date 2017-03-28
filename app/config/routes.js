@@ -19,7 +19,7 @@ const Routes = () =>
             <Route path="/forgot" component={ ResetPasswordPage } />
             <Route path="/register" component={ RegistrationPage } />
             <AuthenticatedRoute>
-                <Route path="/map" component={ AuthLanding } />
+                <HomeRoute path="/map" component={ AuthLanding } />
                 <Route path="/profile" component={ Profile } />
                 <Route path="/establishments(/:eId)"
                        component={ Establishment } />
