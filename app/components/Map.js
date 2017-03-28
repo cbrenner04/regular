@@ -11,29 +11,33 @@ export default class Map extends Component {
                 lat: 41.8818695,
                 lng: -87.629838
             },
-            showInfo: false
+            markers: []
         }
     }
 
-    componentDidMount() {
-        navigator.geolocation.getCurrentPosition((position) => {
-            this.setState({
-                location: {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                }
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps)
+        this.setState({
+            location: {
+                lat: nextProps.center.lat,
+                lng: nextProps.center.lng
+            },
+            markers: nextProps.markers.map((marker) => {
+                return ({
+                    name: marker.name,
+                    position: {
+                        lat: marker.location.lat,
+                        lng: marker.location.lng
+                    }
+                })
             })
-
-            console.log(this.state.location);
-
-        });
+        })
     }
 
     handleMarkerClick(targetMarker) {
-        // console.log(targetVenue);
         this.setState({
-            markers: this.props.markers.map(marker => {
-                if (marker === targetMarker) {
+            markers: this.state.markers.map((marker) => {
+                if (marker.name === targetMarker.name) {
                     return Object.assign({}, marker, { showInfo: true })
                 } else {
                     return Object.assign({}, marker, { showInfo: false })
@@ -44,50 +48,50 @@ export default class Map extends Component {
 
     render() {
         return (
-            <GoogleMapLoader
-                containerElement = {
-                    <div style={{
-                        height: '100%',
-                        width: '100%'
-                    }}></div>
-                }
-                googleMapElement = {
-                    <GoogleMap defaultZoom={16}
-                               defaultCenter={this.state.location}
-                               options={{
-                                   mapTypeControl: false,
-                                   streetViewControl: false
-                               }}>
+            <GoogleMapLoader containerElement = {
+                <div style={{
+                    height: '100%',
+                    width: '100%'
+                }}></div>
+            }
+            googleMapElement = {
+                <GoogleMap defaultZoom={18}
+                           defaultCenter={this.state.location}
+                           options={{
+                               mapTypeControl: false,
+                               streetViewControl: false
+                           }}>
 
-                        {
-                            this.props.markers.map((venue, index) => {
-                                const marker = {
-                                    name: venue.name,
-                                    position: {
-                                        lat: venue.location.lat,
-                                        lng: venue.location.lng
-                                    }
-                                }
-
-                                return (
-                                    <Marker
-                                        key={index} {...marker}
-                                        onClick={() => this.handleMarkerClick(marker)}
-                                    >
-                                        { marker.showInfo && (
-                                            <InfoWindow>
-                                                <a href={`/#/establishments/${venue.id}`}>
-                                                    {`${index + OFFSET}. ${venue.name}`}
-                                                </a>
-                                            </InfoWindow>
-                                        )}
-                                    </Marker>
-                                )
-                            })
+                    { this.state.markers.map((venue, index) => {
+                        const marker = {
+                            name: venue.name,
+                            position: {
+                                lat: venue.position.lat,
+                                lng: venue.position.lng
+                            },
+                            showInfo: venue.showInfo
                         }
-                    </GoogleMap>
-                }
-            />
+
+                        return (
+                            <Marker
+                                key={index} {...marker}
+                                onClick={
+                                    () => {
+                                        this.handleMarkerClick(marker)
+                                    }
+                                }>
+                                { marker.showInfo && (
+                                    <InfoWindow>
+                                        <a href={`/#/establishments/${venue.id}`}>
+                                            {`${index + OFFSET}. ${venue.name}`}
+                                        </a>
+                                    </InfoWindow>
+                                )}
+                            </Marker>
+                        )
+                    }) }
+                </GoogleMap>
+            } />
         )
     }
 }
