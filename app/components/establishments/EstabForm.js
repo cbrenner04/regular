@@ -3,6 +3,7 @@ import EstabComments from './EstabComments.js';
 import EstabGender from './EstabGender';
 import EstabRating from './EstabRating.js';
 import superagent from 'superagent';
+import { hashHistory } from 'react-router';
 
 export default class EstabForm extends Component {
     constructor() {
@@ -64,6 +65,7 @@ export default class EstabForm extends Component {
                     rating: '',
                     ratingSet: false
                 });
+                hashHistory.push(`/establishments/${this.props.venueId}`);
             });
     }
 
