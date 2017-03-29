@@ -52,11 +52,12 @@ export default class Establishment extends Component {
                     set('Accept', 'text/json').
                     then((response) => {
                         const item = response.body.response.photos.items[0]
-
-                        this.setState({
-                            venueImgUrl: `${item.prefix}${item.width}x` +
-                                         `${item.height}${item.suffix}`
-                        })
+                        if (item) {
+                            this.setState({
+                                venueImgUrl: `${item.prefix}${item.width}x` +
+                                             `${item.height}${item.suffix}`
+                            })
+                        }
                     })
 
             })
