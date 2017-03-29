@@ -5,18 +5,12 @@
     margin: auto;
     overflow: hidden;
 }
-/*.main-text {
-    margin-top: 0px;
-}
-*/
 .btn-group-justified {
     height: 50px;
 }
-
 .score {
     font-size: 100px;
 }
-
 .places-well {
     width: 100%;
     white-space: nowrap;
