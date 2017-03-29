@@ -14,6 +14,7 @@ export default class Map extends Component {
             markers: nextProps.markers.map((marker) => {
                 const {location} = marker
                 return ({
+                    id: marker.id,
                     name: marker.name,
                     position: location
                 })
@@ -49,6 +50,7 @@ export default class Map extends Component {
                     { this.state.markers.map((venue, index) => {
                         const {position} = venue
                         const marker = {
+                            id: venue.id,
                             name: venue.name,
                             position: position,
                             showInfo: venue.showInfo
