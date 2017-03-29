@@ -1,47 +1,79 @@
 import {GoogleMap, GoogleMapLoader, InfoWindow, Marker} from 'react-google-maps'
-import React from 'react'
+import React, {Component} from 'react'
 
 const OFFSET = 1;
 
-const Map = ({center, markers}) =>
-    <GoogleMapLoader
-        containerElement = {
-            <div style={{
-                height: '100%',
-                width: '100%'
-            }}></div>
-        }
-        googleMapElement = {
-            <GoogleMap defaultZoom={18}
-                       defaultCenter={center}
-                       options={{
-                           mapTypeControl: false,
-                           streetViewControl: false
-                       }}>
+export default class Map extends Component {
+    constructor() {
+        super();
+        this.state = {markers: []}
+    }
 
-                {
-                    markers.map((venue, index) => {
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            markers: nextProps.markers.map((marker) => {
+                const {location} = marker
+                return ({
+                    name: marker.name,
+                    position: location
+                })
+            })
+        })
+    }
+
+    handleMarkerClick(targetMarker) {
+        this.setState({
+            markers: this.state.markers.map((marker) => {
+                const infoStatus = marker.name === targetMarker.name
+                return Object.assign({}, marker, { showInfo: infoStatus })
+            })
+        })
+    }
+
+    render() {
+        return (
+            <GoogleMapLoader containerElement = {
+                <div style={{
+                    height: '100%',
+                    width: '100%'
+                }}></div>
+            }
+            googleMapElement = {
+                <GoogleMap defaultZoom={17}
+                           center={this.props.center}
+                           options={{
+                               mapTypeControl: false,
+                               streetViewControl: false
+                           }}>
+
+                    { this.state.markers.map((venue, index) => {
+                        const {position} = venue
                         const marker = {
                             name: venue.name,
-                            position: {
-                                lat: venue.location.lat,
-                                lng: venue.location.lng
-                            }
+                            position: position,
+                            showInfo: venue.showInfo
                         }
 
                         return (
-                            <Marker key={index} {...marker}>
-                                <InfoWindow>
-                                    <a href={`/#/establishments/${venue.id}`}>
-                                        {`${index + OFFSET}. ${venue.name}`}
-                                    </a>
-                                </InfoWindow>
+                            <Marker
+                                key={index} {...marker}
+                                onClick={
+                                    () => {
+                                        this.handleMarkerClick(marker)
+                                    }
+                                }>
+                                { marker.showInfo && (
+                                    <InfoWindow>
+                                        <a href={`/#/establishments/${venue.id}`}>
+                                            {`${index + OFFSET}. ${venue.name}`}
+                                        </a>
+                                    </InfoWindow>
+                                )}
                             </Marker>
                         )
-                    })
-                }
-            </GoogleMap>
-        }
-    />
-
-export default Map
+                    }) }
+                </GoogleMap>
+            } />
+        )
+    }
+}

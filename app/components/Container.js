@@ -64,7 +64,7 @@ class Container extends Component {
                     <Map center={this.state.location}
                          markers={this.state.venues} />
                 </div>
-                <Places venues={this.state.venues} />
+                <Places venues={this.state.venues}/>
             </div>
         )
     }
