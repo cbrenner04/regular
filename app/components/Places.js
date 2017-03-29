@@ -4,7 +4,7 @@ import {Button, Modal} from 'react-bootstrap';
 export default class Places extends Component {
     constructor() {
         super();
-        this.state = { showModal: false }
+        this.state = { showModal: true }
     }
 
     close() {
