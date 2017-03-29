@@ -10,7 +10,7 @@ const UserProfileCheckIn = ({establishments}) =>
                             {establishment.establishment.name}
                         </a>
                     </p>
-                    <p><b>Checked In:</b> {moment(establishment.createdAt).format('LLL')}</p>
+                    <p><b>Favorited:</b> {moment(establishment.createdAt).format('LLL')}</p>
                 </div>
             )
         }

@@ -41,7 +41,7 @@ export default class Profile extends Component {
                         <div className="col-xs-12">
                             <Tabs selectedIndex={0}>
                                 <TabList>
-                                    <Tab>Check-ins</Tab>
+                                    <Tab>Favorites</Tab>
                                     <Tab>Ratings</Tab>
                                     <Tab>Settings</Tab>
                                 </TabList>
