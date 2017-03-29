@@ -86,7 +86,9 @@ export default class EstabProfile extends Component {
                             </h4>
                         </div>
                         <div className="col-md-6 text-center">
-                            <img src={this.props.venueImgUrl} height='172' style={{margin: '20px 0'}}/>
+                            <img src={this.props.venueImgUrl}
+                                 height='172' style={{margin: '20px 0'}}
+                                 alt="Venue photo"/>
                         </div>
                     </div>
                 </div>
