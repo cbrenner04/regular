@@ -11,6 +11,7 @@ export default class Places extends Component {
         this.setState({
             places: nextProps.venues.map((venue) => {
                 return ({
+                    id: venue.id,
                     name: venue.name
                 })
             })
@@ -18,21 +19,22 @@ export default class Places extends Component {
     }
 
     open(targetPlace) {
+        // query database here
         this.setState({
             places: this.state.places.map((place) => {
                 const modalStatus = place.name === targetPlace.name
-                return Object.assign({}, place, { showInfo: modalStatus })
+                return Object.assign({}, place, { showModal: modalStatus })
             })
         })
     }
 
     close() {
-        this.setState({ showModal: false });
+        this.setState({
+            places: this.state.places.map((place) => {
+                return Object.assign({}, place, { showModal: false })
+            })
+        })
     }
-
-    // open() {
-    //     this.setState({ showModal: true });
-    // }
 
     render() {
         const OFFSET = 1;
@@ -43,30 +45,34 @@ export default class Places extends Component {
                 {
                     this.state.places.map((place, index) => {
                         const modal = {
+                            id: place.id,
                             name: place.name,
-                            showModal: place.showInfo
+                            showModal: place.showModal
                         }
 
                         return (
-                            <div>
+                            <div key={index}>
                                 <Button
-                                    bsStyle="primary"
+                                    style={{margin: '10px 0'}}
+                                    className="btn btn-block places-well"
+                                    bsStyle="default"
                                     bsSize="large"
-                                    key={place.id}
                                     onClick={
                                         () => {this.open(modal)}
                                 }>
                                      {`${index + OFFSET}. ${place.name}`}
                                 </Button>
 
-                                <Modal show={this.state.showModal} onHide={
+                                <Modal show={place.showModal} onHide={
                                         () => {this.close()}
                                 }>
                                     <Modal.Header closeButton>
                                         <Modal.Title>{`${index + OFFSET}. ${place.name}`}</Modal.Title>
                                     </Modal.Header>
                                     <Modal.Body>
-                                        {`${index + OFFSET}. ${place.name}`}
+                                        <a href={`/#/establishments/${place.id}`}>
+                                            {`${index + OFFSET}. ${place.name}`}
+                                        </a>
                                     </Modal.Body>
                                     <Modal.Footer>
                                         <Button onClick={
@@ -81,7 +87,7 @@ export default class Places extends Component {
                     })
                 }
 
-                
+
             </div>
         )
     }
