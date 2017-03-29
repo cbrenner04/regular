@@ -25,7 +25,6 @@ class Container extends Component {
                 }
             })
 
-            console.log(this.state.location);
             this.doFourSquare();
 
         }, () => {

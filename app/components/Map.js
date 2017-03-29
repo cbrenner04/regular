@@ -6,29 +6,16 @@ const OFFSET = 1;
 export default class Map extends Component {
     constructor() {
         super();
-        this.state = {
-            location: {
-                lat: 41.8818695,
-                lng: -87.629838
-            },
-            markers: []
-        }
+        this.state = {markers: []}
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps)
         this.setState({
-            location: {
-                lat: nextProps.center.lat,
-                lng: nextProps.center.lng
-            },
             markers: nextProps.markers.map((marker) => {
+                const {location} = marker
                 return ({
                     name: marker.name,
-                    position: {
-                        lat: marker.location.lat,
-                        lng: marker.location.lng
-                    }
+                    position: location
                 })
             })
         })
@@ -37,11 +24,8 @@ export default class Map extends Component {
     handleMarkerClick(targetMarker) {
         this.setState({
             markers: this.state.markers.map((marker) => {
-                if (marker.name === targetMarker.name) {
-                    return Object.assign({}, marker, { showInfo: true })
-                } else {
-                    return Object.assign({}, marker, { showInfo: false })
-                }
+                const infoStatus = marker.name === targetMarker.name
+                return Object.assign({}, marker, { showInfo: infoStatus })
             })
         })
     }
@@ -55,20 +39,18 @@ export default class Map extends Component {
                 }}></div>
             }
             googleMapElement = {
-                <GoogleMap defaultZoom={18}
-                           defaultCenter={this.state.location}
+                <GoogleMap defaultZoom={17}
+                           center={this.props.center}
                            options={{
                                mapTypeControl: false,
                                streetViewControl: false
                            }}>
 
                     { this.state.markers.map((venue, index) => {
+                        const {position} = venue
                         const marker = {
                             name: venue.name,
-                            position: {
-                                lat: venue.position.lat,
-                                lng: venue.position.lng
-                            },
+                            position: position,
                             showInfo: venue.showInfo
                         }
 
