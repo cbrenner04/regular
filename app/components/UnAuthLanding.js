@@ -21,7 +21,7 @@ const UnAuthLanding = () =>
         </div>
         <hr />
         <div>
-            <div className="well well-lg">
+            <div className="well well-lg text-center">
                 <h3>ABOUT</h3>
                 <p>
                     Ever wonder what is the second most important part about

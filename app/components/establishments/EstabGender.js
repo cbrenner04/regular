@@ -55,9 +55,9 @@ export default class EstabGender extends Component {
                 <div className="gender-main">
                     <h2>What bathroom are you using?</h2>
                     <div className="col-xs-12" style={{
-    paddingLeft: 0}}
+    padding: 0}}
 >
-                        <button className={`btn btn-${this.state.femaleButtonStyle}`}
+                        <button className={`btn btn-lg btn-block btn-${this.state.femaleButtonStyle}`}
                                 onClick={
                                     () => {
                                         this.onSelection(FEMALE_SELECTOR)
@@ -65,7 +65,7 @@ export default class EstabGender extends Component {
                                 }>
                             Female
                         </button>
-                        <button className={`btn btn-${this.state.maleButtonStyle}`}
+                        <button className={`btn btn-lg btn-block btn-${this.state.maleButtonStyle}`}
                                 onClick={
                                     () => {
                                         this.onSelection(MALE_SELECTOR)
@@ -73,7 +73,7 @@ export default class EstabGender extends Component {
                                 }>
                             Male
                         </button>
-                        <button className={`btn btn-${this.state.genderNeutralButtonStyle}`}
+                        <button className={`btn btn-lg btn-block btn-${this.state.genderNeutralButtonStyle}`}
                                 onClick={
                                     () => {
                                         this.onSelection(GENDER_NEUTRAL_SELECTOR)
@@ -81,7 +81,7 @@ export default class EstabGender extends Component {
                                 }>
                             Gender Neutral
                         </button>
-                        <button className={`btn btn-${this.state.familyButtonStyle}`}
+                        <button className={`btn btn-lg btn-block btn-${this.state.familyButtonStyle}`}
                                 onClick={
                                     () => {
                                         this.onSelection(FAMILY_SELECTOR)

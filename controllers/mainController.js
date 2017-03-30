@@ -145,7 +145,7 @@ module.exports = function(app) {
                 }, function (err) {
                     if (err) {
                         return writeError('The existing password that you  ' +
-                                          'entered was incorrect. Asshole.');
+                                          'entered was incorrect.');
                     }
                     req.user.password = req.body.password;
 

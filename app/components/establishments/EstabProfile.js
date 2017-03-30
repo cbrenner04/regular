@@ -129,7 +129,7 @@ export default class EstabProfile extends Component {
                                 <h4>Rating: <strong className="text-warning">
                                     {this.ratingLabel(estab.rating)}</strong>
                                 </h4>
-                                <p>{estab.comment}</p>
+                                <h4><em>"{estab.comment}"</em></h4>
                             </div>
                         )
                     }

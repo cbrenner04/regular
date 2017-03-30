@@ -87,6 +87,8 @@ export default class EstabForm extends Component {
                         this.onRatingSubmit(rating)
                     }
                 }/>
+                <br />
+                <br />
                 <EstabComments comments={ this.state.comments }
                                onUserInput={
                                    (object) => this.handleUserInput(object)
@@ -96,7 +98,7 @@ export default class EstabForm extends Component {
                                        this.onCommentsSubmit()
                                    }
                                }/>
-                <button className="btn btn-success"
+                <button className="btn btn-lg btn-block btn-success"
                         onClick={
                           () => {
                               this.submitForm();
