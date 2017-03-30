@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import moment from 'moment';
 
 export default class UserProfileCheckIn extends Component {
 
@@ -25,6 +26,7 @@ export default class UserProfileCheckIn extends Component {
                                     {establishment.establishment.name}
                                 </a>
                             </p>
+                            <p><b>Favorited:</b> {moment(establishment.createdAt).format('LLL')}</p>
                             <p><strong>Your Rating:</strong> <strong className="text-warning">
                                 {this.ratingLabel(establishment.rating)}</strong></p>
                             <p><strong>Comments:</strong><br /> {establishment.comment}</p>
