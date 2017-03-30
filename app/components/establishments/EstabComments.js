@@ -12,7 +12,7 @@ export default class EstabComments extends Component {
           <div>
                 <div className="gender-main">
                     <h2>Leave a comment?</h2>
-                    <div className="col-xs-12" style={{paddingLeft: 0}}>
+                    <div className="col-xs-12" style={{padding: 0}}>
                       <form onSubmit={ (event) => this.handleSubmit(event) }>
                           <textarea type="text"
                                     rows="10"

@@ -29,7 +29,7 @@ export default class UserProfileCheckIn extends Component {
                             <p><b>Favorited:</b> {moment(establishment.createdAt).format('LLL')}</p>
                             <p><strong>Your Rating:</strong> <strong className="text-warning">
                                 {this.ratingLabel(establishment.rating)}</strong></p>
-                            <p><strong>Comments:</strong><br /> {establishment.comment}</p>
+                            <p><em>"{establishment.comment}"</em></p>
                         </div>
                     )
                 }

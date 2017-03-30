@@ -38,10 +38,10 @@ export default class EstabRating extends Component {
     }
     render() {
         return (
-            <div>
+            <div style={{marginTop: '16em'}}>
                 <h2>Rate this bathroom:</h2>
-                <div className="col-xs-12" style={{paddingLeft: 0}}>
-                    <button className={`btn btn-${this.state.terribleButtonStyle}`}
+                <div className="text-center" style={{paddingLeft: 0}}>
+                    <button className={`col-xs-4 pull-left btn btn-lg btn-${this.state.terribleButtonStyle}`}
                             onClick={
                                 () => {
                                     this.onRating(TERRIBLE_RATING)
@@ -49,7 +49,7 @@ export default class EstabRating extends Component {
                             }>
                         Terrible
                     </button>
-                    <button className={`btn btn-${this.state.decentButtonStyle}`}
+                    <button className={`col-xs-4 btn btn-lg btn-${this.state.decentButtonStyle}`}
                             onClick={
                                 () => {
                                     this.onRating(DECENT_RATING)
@@ -57,7 +57,7 @@ export default class EstabRating extends Component {
                             }>
                         Decent
                     </button>
-                    <button className={`btn btn-${this.state.splendidButtonStyle}`}
+                    <button className={`col-xs-4 pull-right btn btn-lg btn-${this.state.splendidButtonStyle}`}
                             onClick={
                                 () => {
                                     this.onRating(SPLENDID_RATING)
