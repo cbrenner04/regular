@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Tab, TabList, TabPanel, Tabs} from 'react-tabs';
 import DocumentTitle from 'react-document-title';
-import UserProfileCheckIn from './profiles/UserProfileCheckIn.js';
 import {UserProfileForm} from 'react-stormpath';
 import UserProfileRating from './profiles/UserProfileRating.js';
 import superagent from 'superagent';
@@ -41,14 +40,9 @@ export default class Profile extends Component {
                         <div className="col-xs-12">
                             <Tabs selectedIndex={0}>
                                 <TabList>
-                                    <Tab>Favorites</Tab>
                                     <Tab>Ratings</Tab>
                                     <Tab>Settings</Tab>
                                 </TabList>
-                                <TabPanel>
-                                    <UserProfileCheckIn
-                                        establishments={this.state.estabs}/>
-                                </TabPanel>
                                 <TabPanel>
                                     <UserProfileRating
                                         establishments={this.state.estabs}/>
