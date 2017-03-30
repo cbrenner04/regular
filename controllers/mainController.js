@@ -44,7 +44,7 @@ module.exports = function(app) {
         }
     });
 
-    app.get('/bathroom/:id/:name/:address/:crossStreet', function(req, res) {
+    app.get('/bathroom/:id/:name?/:address?/:crossStreet?', function(req, res) {
         var requestedBathroom = req.params.id
         if (requestedBathroom) {
             Establishment.findOne({fourSquareId: requestedBathroom},
