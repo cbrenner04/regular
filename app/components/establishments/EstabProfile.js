@@ -126,7 +126,9 @@ export default class EstabProfile extends Component {
                                 <h3>{estab.user.givenName}</h3>
                                 <p>{moment(estab.createdAt).format('LLL')}</p>
                                 <h4>Gender: {estab.bathroomGender}</h4>
-                                <h4>Rating: {estab.rating}</h4>
+                                <h4>Rating: <strong className="text-warning">
+                                    {this.ratingLabel(estab.rating)}</strong>
+                                </h4>
                                 <p>{estab.comment}</p>
                             </div>
                         )
