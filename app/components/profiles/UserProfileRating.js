@@ -1,20 +1,37 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-const UserProfileCheckIn = ({establishments}) =>
-    <div>
-        {
-            establishments.map((establishment) =>
-                <div className="well well-sm" key={establishment._id}>
-                    <p><b>Name: </b>
-                        <a href={`/#/establishments/${establishment.establishment.fourSquareId}`}>
-                            {establishment.establishment.name}
-                        </a>
-                    </p>
-                    <p><b>Your Rating:</b> {establishment.rating}</p>
-                    <p><b>Comments:</b><br /> {establishment.comment}</p>
-                </div>
-            )
+export default class UserProfileCheckIn extends Component {
+
+    ratingLabel(rating) {
+        if (Math.round(rating) === 1) {
+            return 'TERRIBLE';
+        } else if (Math.round(rating) === 2) {
+            return 'DECENT';
+        } else if (Math.round(rating) === 3) {
+            return 'SPLENDID';
+        } else {
+            return 'N/A';
         }
-    </div>
+    }
 
-export default UserProfileCheckIn;
+    render() {
+        return (
+            <div>
+                {
+                    this.props.establishments.map((establishment) =>
+                        <div className="well well-sm" key={establishment._id}>
+                            <p><strong>Name: </strong>
+                                <a href={`/#/establishments/${establishment.establishment.fourSquareId}`}>
+                                    {establishment.establishment.name}
+                                </a>
+                            </p>
+                            <p><strong>Your Rating:</strong> <strong className="text-warning">
+                                {this.ratingLabel(establishment.rating)}</strong></p>
+                            <p><strong>Comments:</strong><br /> {establishment.comment}</p>
+                        </div>
+                    )
+                }
+            </div>
+        )
+    }
+}
