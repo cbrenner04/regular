@@ -36,30 +36,51 @@ export default class EstabProfile extends Component {
                         women: 0
                     }
 
-                    const count = res.length;
+                    let overallCount = 0;
+                    let familyCount = 0;
+                    let menCount = 0;
+                    let neutralCount = 0;
+                    let womenCount = 0;
 
                     res.forEach((item) => {
                         obj.overall += item.rating;
+                        overallCount++;
                         if (item.bathroomGender === 'gender neutral') {
                             obj.neutral += item.rating;
+                            neutralCount++;
                         } else if (item.bathroomGender === 'family') {
                             obj.family += item.rating;
+                            familyCount++;
                         } else if (item.bathroomGender === 'female') {
                             obj.women += item.rating;
+                            womenCount++;
                         } else if (item.bathroomGender === 'male') {
                             obj.men += item.rating;
+                            menCount++;
                         }
                     });
 
                     this.setState({
-                        family: obj.family / count || 'no ratings yet',
-                        men: obj.men / count || 'no ratings yet',
-                        neutral: obj.neutral / count || 'no ratings yet',
-                        overall: obj.overall / count || 'no ratings yet',
-                        women: obj.women / count || 'no ratings yet'
+                        family: obj.family / familyCount || 'no ratings yet',
+                        men: obj.men / menCount || 'no ratings yet',
+                        neutral: obj.neutral / neutralCount || 'no ratings yet',
+                        overall: obj.overall / overallCount || 'no ratings yet',
+                        women: obj.women / womenCount || 'no ratings yet'
                     });
                 })
         }, TIMEOUT_LENGTH);
+    }
+
+    ratingLabel(rating) {
+        if (Math.round(rating) === 1) {
+            return 'TERRIBLE';
+        } else if (Math.round(rating) === 2) {
+            return 'DECENT';
+        } else if (Math.round(rating) === 3) {
+            return 'SPLENDID';
+        } else {
+            return 'N/A';
+        }
     }
 
     render() {
@@ -70,19 +91,24 @@ export default class EstabProfile extends Component {
                     <div className="well col-md-12">
                         <div className="col-md-6">
                             <h3 className="text-success">
-                                Bathrooms Overall: {this.state.overall}
+                                Overall Rating: <strong className="text-warning">
+                                {this.ratingLabel(this.state.overall)}</strong>
                             </h3>
                             <h4 className="text-info">
-                                Gender Neutral: {this.state.neutral}
+                                Gender Neutral: <strong className="text-warning">
+                                {this.ratingLabel(this.state.neutral)}</strong>
                             </h4>
                             <h4 className="text-info">
-                                Family: {this.state.family}
+                                Family: <strong className="text-warning">
+                                {this.ratingLabel(this.state.family)}</strong>
                             </h4>
                             <h4 className="text-info">
-                                Female: {this.state.women}
+                                Female: <strong className="text-warning">
+                                {this.ratingLabel(this.state.women)}</strong>
                             </h4>
                             <h4 className="text-info">
-                                Male: {this.state.men}
+                                Male: <strong className="text-warning">
+                                {this.ratingLabel(this.state.men)}</strong>
                             </h4>
                         </div>
                         <div className="col-md-6 text-center">
