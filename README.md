@@ -8,7 +8,7 @@ Regular allows users to find and rate locals bathrooms.
 
 The application is designed as a mobile-first web app.
 
-* Go to [**Regularp**](https://Regular-app.herokuapp.com/) for the web app.
+* Go to [**Regular**](https://cjb-final-project.herokuapp.com) for the web app.
 
 ### The Engineers
 
