@@ -33,7 +33,7 @@ const UnAuthLanding = () =>
                     Bathrooms.
                 </p>
                 <p>
-                    It's true, we rate just about everyhting these days...
+                    It's true, we rate just about everything these days...
                     except bathrooms. They are an integral part of our lives and
                     our enjoyment of any experience.
                     That is why we created REGULAR.
